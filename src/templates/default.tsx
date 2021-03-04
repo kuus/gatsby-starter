@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { injectIntl } from "@kuus/gatsby-plugin-i18n";
 import Layout from "src/components/Layout";
+import { MDXRenderer } from "src/components/MDX";
 
 const Default: React.FC<{}> = ({ intl, data }) => {
   const _ = intl.formatMessage;
@@ -10,6 +11,7 @@ const Default: React.FC<{}> = ({ intl, data }) => {
   return (
     <Layout>
       {title}
+      <MDXRenderer>{data.node.body}</MDXRenderer>
     </Layout>
   );
 }

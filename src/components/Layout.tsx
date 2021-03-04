@@ -1,13 +1,8 @@
 import React, { FC } from "react";
-import { MdxProvider } from "src/components/MDX";
 
-
-const Layout: FC<{}> = ({ children, mdx }) => {
+const Layout: FC<{}> = ({ children }) => {
   return (
-    <div>
-      {children}
-      {mdx && <MdxProvider>{mdx}</MdxProvider>}
-    </div>
+    <>{children}</>
   );
 };
 

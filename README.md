@@ -1,11 +1,17 @@
+# Gatsby starter
 
-## Gatsby
+```bash
+npm install
 
-### Resources
+npm start
+npm run cms
+```
+
+## Resources
 
 - [How to official guides](https://www.gatsbyjs.com/docs/how-to/)
 
-### Set up NetlifyCMS
+## Set up NetlifyCMS
 
 The following steps-by-steps use [Netlify](https://www.netlify.com) to host the starter from GitHub. Other methods can be used to implement [NetlifyCMS](https://www.netlifycms.org).
 
@@ -20,14 +26,14 @@ The following steps-by-steps use [Netlify](https://www.netlify.com) to host the 
 9. Go back to the Identiy tab and invite users/yourself
 10. Go to your netlify hosted website `/admin/` and login using your credentials to access the CMS
 
-### Configuring NetlifyCMS
+## Configuring NetlifyCMS
 
 In `/static/admin/confiq.yml`, the CMS can be configured.
 
-### Deploy
+## Deploy
 
 - [Deploy Gatsby sites throug Github pages](https://github.com/marketplace/actions/gatsby-publish)
 
-### Caveats
+## Caveats
 
 - TODO: remove `plugins/gatsby-remark-mdx-v2-images` once mdx v2 is well supported by gatsby ecosystem, we can also remove the following deps then: `unist-util-visit`, `hast-util-from-dom` and `jsdom` @see https://github.com/mdx-js/mdx/issues/1041

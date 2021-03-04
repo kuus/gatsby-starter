@@ -14,14 +14,15 @@ import it from "netlify-cms-locales/dist/esm/it";
 const config = {
   backend: {
     ...configurator.backend,
-    name: configurator.isLocal ? "test-repo" : "git-gateway",
+    name: "test-repo",
+    // name: configurator.isLocal ? "test-repo" : "git-gateway",
   },
   i18n: {
     structure: "multiple_files",
     locales: ["en", "it"],
     default_locale: "en",
   },
-  publish_mode: configurator.isLocal ? undefined : "editorial_workflow",
+  // publish_mode: "editorial_workflow",
   local_backend: true,
   media_folder: "static/img",
   public_folder: "/img",

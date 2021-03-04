@@ -33,36 +33,36 @@ module.exports = {
       resolve: "gatsby-plugin-mdx",
       options: {
         extensions: [".mdx", ".md"],
-        // remarkPlugins: [require("remark-image-attributes")],
-        // gatsbyRemarkPlugins: [
-        //   "gatsby-remark-autolink-headers",
-        //   {
-        //     resolve: "gatsby-remark-copy-linked-files",
-        //     options: {
-        //       destinationDir: "documents", // https://bit.ly/2NCmJ5t
-        //       ignoreFileExtensions: ["png", "jpg", "jpeg"],
-        //     },
-        //   },
-        //   {
-        //     resolve: "gatsby-remark-images",
-        //     options: {
-        //       maxWidth: 900,
-        //       withWebp: true,
-        //       disableBgImageOnAlpha: true,
-        //       linkImagesToOriginal: false,
-        //     },
-        //   },
-        //   {
-        //     resolve: require.resolve("./plugins/gatsby-remark-mdx-v2-images"),
-        //   },
-        //   {
-        //     resolve: "gatsby-remark-image-attributes",
-        //     options: {
-        //       styleAttributes: true,
-        //       dataAttributes: true,
-        //     },
-        //   },
-        // ],
+        remarkPlugins: [require("remark-image-attributes")],
+        gatsbyRemarkPlugins: [
+          "gatsby-remark-autolink-headers",
+          {
+            resolve: "gatsby-remark-copy-linked-files",
+            options: {
+              destinationDir: "documents", // https://bit.ly/2NCmJ5t
+              ignoreFileExtensions: ["png", "jpg", "jpeg"],
+            },
+          },
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              // maxWidth: 900,
+              withWebp: true,
+              disableBgImageOnAlpha: true,
+              linkImagesToOriginal: false,
+            },
+          },
+          {
+            resolve: require.resolve("./plugins/gatsby-remark-mdx-v2-images"),
+          },
+          {
+            resolve: "gatsby-remark-image-attributes",
+            options: {
+              styleAttributes: true,
+              dataAttributes: true,
+            },
+          },
+        ],
       },
     },
     "gatsby-plugin-react-helmet",
@@ -80,8 +80,8 @@ module.exports = {
       resolve: "@kuus/gatsby-plugin-i18n",
       options: {
         debug: false,
-        languages: ["it", "en"],
-        defaultLanguage: "it",
+        languages: ["en", "it"],
+        defaultLanguage: "en",
         baseUrl: "http://localhost:8000",
         untranslatedComponent: require.resolve(`${__dirname}/src/templates/untranslated.tsx`)
       }

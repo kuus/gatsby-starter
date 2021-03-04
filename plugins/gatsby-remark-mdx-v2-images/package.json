@@ -1,0 +1,5 @@
+{
+  "version": "0.0.1",
+  "config": "@see https://github.com/newrelic/docs-website/tree/develop/plugins/gatsby-remark-mdx-v2-images",
+  "devDependencies": {}
+}

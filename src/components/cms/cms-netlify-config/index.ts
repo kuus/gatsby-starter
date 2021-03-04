@@ -5,7 +5,7 @@ import { default as meta } from "./meta";
 import { default as register } from "./register";
 
 export default {
-  isLocal: process.env.GATSBY_IS_LOCAL === "true",
+  isLocal: typeof process !== "undefined" && process.env.GATSBY_IS_LOCAL === "true",
   backend,
   collections,
   fields,

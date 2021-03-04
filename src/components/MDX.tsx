@@ -1,28 +1,37 @@
-import React from "react";
-import { MDXProvider } from "@mdx-js/react";
-import { MDXRenderer } from "gatsby-plugin-mdx";
-// import MarkdownFromRaw from "./fromRaw";
+import React, { FC } from "react";
+import { MDXProvider as Provider } from "@mdx-js/react";
+import { MDXRenderer as Renderer } from "gatsby-plugin-mdx";
 
 const globalComponents = {
+  // a: AnchorSmart,
+};
 
-}
+type MDXRendererProps = {
+  mdxProps?: any;
+};
 
-export function MdxProvider(props) {
-  return <MDXProvider components={globalComponents} {...props} />;
-}
+export const MDXProvider = (props) => {
+  return <Provider components={globalComponents} {...props} />;
+};
 
-export function MdxRenderer({ children, mdxProps, ...props }) {
+export const MDXRenderer: FC<MDXRendererProps> = ({
+  children,
+  mdxProps = {},
+  ...props
+}) => {
   return (
-    <MDXRenderer {...mdxProps} {...props}>
+    <Renderer {...mdxProps} {...props}>
       {children}
-    </MDXRenderer>
+    </Renderer>
   );
-}
+};
 
-export default function Mdx({ children, mdxProps = {} }) {
+export const MDX: FC<MDXRendererProps> = ({ children, mdxProps = {} }) => {
   return (
-    <MdxProvider>
-      <MdxRenderer mdxProps={mdxProps}>{children}</MdxRenderer>
-    </MdxProvider>
+    <MDXProvider>
+      <MDXRenderer mdxProps={mdxProps}>{children}</MDXRenderer>
+    </MDXProvider>
   );
-}
+};
+
+export default MDX;
