@@ -2,6 +2,6 @@
 template: default
 id: dR_KvpSSTzHJ7LUyCBpFZ
 url: /
-title: Home titolo
+title: "Test title "
 ---
-un **po** di contenuto
+Dit is een test titel of toch niet?

@@ -80,7 +80,7 @@ module.exports = {
       resolve: "@kuus/gatsby-plugin-i18n",
       options: {
         debug: false,
-        languages: ["en", "it"],
+        languages: ["en", "it", "nl"],
         defaultLanguage: "en",
         baseUrl: "http://localhost:8000",
         untranslatedComponent: require.resolve(`${__dirname}/src/templates/untranslated.tsx`)

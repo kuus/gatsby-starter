@@ -13,6 +13,7 @@ const Default: React.FC<{}> = ({ intl, data }) => {
       {title}
       <Link to="/pages/about/">About</Link>
       <MDXRenderer>{data.node.body}</MDXRenderer>
+      {data.allMdx.edges.map(({node}) => <Link to={node.fields.route}>{node.frontmatter.title}</Link>)}
     </Layout>
   );
 }
@@ -20,11 +21,27 @@ const Default: React.FC<{}> = ({ intl, data }) => {
 export default injectIntl(Default);
 
 export const query = graphql`
-  query Default($id: String!) {
+  query Default($id: String!, $lang: String!) {
     node: mdx(id: { eq: $id }) {
       body
       frontmatter {
         title
+      }
+    }
+    allMdx(filter: {
+      fileAbsolutePath: {glob: "**/content/blog/**/*"}
+      fields: { lang: { eq: $lang } }
+    }) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+          }
+          fields {
+            route
+          }
+        }
       }
     }
   }
