@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { injectIntl } from "@kuus/gatsby-plugin-i18n";
+import { Link, injectIntl } from "@kuus/gatsby-plugin-i18n";
 import Layout from "src/components/Layout";
 import { MDXRenderer } from "src/components/MDX";
 
@@ -11,6 +11,7 @@ const Default: React.FC<{}> = ({ intl, data }) => {
   return (
     <Layout>
       {title}
+      <Link to="/pages/about/">About</Link>
       <MDXRenderer>{data.node.body}</MDXRenderer>
     </Layout>
   );
