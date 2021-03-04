@@ -1,0 +1,15 @@
+en:
+  settings_header_menu:
+    - title: asd
+      href: series/introduction/index
+    - title: test
+      href: test/index
+  test: asd
+  last_edit: 2021-02-23T20:30:06.295Z
+it:
+  settings_header_menu:
+    - title: test
+      href: test/index
+    - title: asd
+      href: series/introduction/index
+  test: asdasda

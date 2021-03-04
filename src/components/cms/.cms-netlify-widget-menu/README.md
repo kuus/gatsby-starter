@@ -1,0 +1,1 @@
+see https://github.com/bitterbit/netlify-cms-links-menu
