@@ -3212,8 +3212,11 @@ type TemplatePagesHomeQuery = { readonly node: Maybe<(
     Pick<Mdx, 'body'>
     & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
   )>, readonly members: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<Mdx, 'slug'>
-        & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
+        Pick<Mdx, 'id'>
+        & { readonly frontmatter: Maybe<(
+          Pick<MdxFrontmatter, 'title'>
+          & { readonly logos: Maybe<{ readonly logo: Maybe<{ readonly childImageSharp: Maybe<Pick<ImageSharp, 'gatsbyImageData'>> }> }> }
+        )> }
       ) }> } };
 
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;

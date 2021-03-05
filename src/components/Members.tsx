@@ -1,4 +1,5 @@
 import React from "react";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import styled from "styled-components";
 
 const List = styled.div`
@@ -14,7 +15,10 @@ const Item = styled.div`
 const Members = ({ data }) => {
   return (
     <List>
-      {data.edges.map(({ node }) => <Item>{node.frontmatter.title}</Item>)}
+      {data.edges.map(({ node }) => <Item key={node.id}>
+        {node.frontmatter.title}
+        <GatsbyImage image={getImage(node.frontmatter.logos.logo)} />
+      </Item>)}
     </List>
   );
 }

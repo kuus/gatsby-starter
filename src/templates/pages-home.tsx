@@ -36,9 +36,16 @@ export const query = graphql`
     ) {
       edges {
         node {
-          slug
+          id
           frontmatter {
             title
+            logos {
+              logo {
+                childImageSharp {
+                  gatsbyImageData(width: 200)
+                }
+              }
+            }
           }
         }
       }
