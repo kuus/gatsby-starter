@@ -21,14 +21,19 @@ const TemplatePagesHome: Page<GatsbyTypes.TemplatePagesHomeQuery> = ({ intl, dat
 export default injectIntl(TemplatePagesHome);
 
 export const query = graphql`
-  query TemplatePagesHome($id: String!) {
+  query TemplatePagesHome($id: String!, $locale: String!) {
     node: mdx(id: { eq: $id }) {
       body
       frontmatter {
         title
       }
     }
-    members: allMdx(filter: {fileAbsolutePath: {glob: "**/members/**/*"}}) {
+    members: allMdx(
+      filter: {
+        fileAbsolutePath: { glob: "**/members/**/*" }
+        fields: { locale: { eq: $locale } }
+      }
+    ) {
       edges {
         node {
           slug

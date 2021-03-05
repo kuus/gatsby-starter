@@ -3204,6 +3204,7 @@ type TemplatePagesAboutQuery = { readonly node: Maybe<(
 
 type TemplatePagesHomeQueryVariables = Exact<{
   id: Scalars['String'];
+  locale: Scalars['String'];
 }>;
 
 
