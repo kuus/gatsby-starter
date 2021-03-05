@@ -3,7 +3,7 @@ export const path = {
   // widget: "hidden",
   label: "Folder path",
   index_file: "index",
-  required: false,
+  i18n: "duplicate"
 };
 
 export default {

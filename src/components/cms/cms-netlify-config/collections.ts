@@ -3,7 +3,7 @@ import meta from "./meta";
 import fields from "./fields";
 import { titleCase } from "./helpers";
 
-const relativeMedia = {
+export const relativeMedia = {
   media_folder: "",
   public_folder: "",
 };
@@ -146,4 +146,5 @@ export default {
   pagesStatic,
   blog,
   settings,
+  relativeMedia
 };

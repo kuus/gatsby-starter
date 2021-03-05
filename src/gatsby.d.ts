@@ -601,6 +601,7 @@ type MdxFrontmatter = {
   readonly last_edit: Maybe<Scalars['Date']>;
   readonly image: Maybe<Scalars['String']>;
   readonly cover: Maybe<MdxFrontmatterCover>;
+  readonly logos: Maybe<MdxFrontmatterLogos>;
 };
 
 
@@ -614,6 +615,11 @@ type MdxFrontmatter_last_editArgs = {
 type MdxFrontmatterCover = {
   readonly caption: Maybe<Scalars['String']>;
   readonly image: Maybe<Scalars['String']>;
+};
+
+type MdxFrontmatterLogos = {
+  readonly logo_white: Maybe<File>;
+  readonly logo: Maybe<File>;
 };
 
 type MdxHeadingMdx = {
@@ -1206,11 +1212,63 @@ type MdxFrontmatterFilterInput = {
   readonly last_edit: Maybe<DateQueryOperatorInput>;
   readonly image: Maybe<StringQueryOperatorInput>;
   readonly cover: Maybe<MdxFrontmatterCoverFilterInput>;
+  readonly logos: Maybe<MdxFrontmatterLogosFilterInput>;
 };
 
 type MdxFrontmatterCoverFilterInput = {
   readonly caption: Maybe<StringQueryOperatorInput>;
   readonly image: Maybe<StringQueryOperatorInput>;
+};
+
+type MdxFrontmatterLogosFilterInput = {
+  readonly logo_white: Maybe<FileFilterInput>;
+  readonly logo: Maybe<FileFilterInput>;
+};
+
+type FileFilterInput = {
+  readonly sourceInstanceName: Maybe<StringQueryOperatorInput>;
+  readonly absolutePath: Maybe<StringQueryOperatorInput>;
+  readonly relativePath: Maybe<StringQueryOperatorInput>;
+  readonly extension: Maybe<StringQueryOperatorInput>;
+  readonly size: Maybe<IntQueryOperatorInput>;
+  readonly prettySize: Maybe<StringQueryOperatorInput>;
+  readonly modifiedTime: Maybe<DateQueryOperatorInput>;
+  readonly accessTime: Maybe<DateQueryOperatorInput>;
+  readonly changeTime: Maybe<DateQueryOperatorInput>;
+  readonly birthTime: Maybe<DateQueryOperatorInput>;
+  readonly root: Maybe<StringQueryOperatorInput>;
+  readonly dir: Maybe<StringQueryOperatorInput>;
+  readonly base: Maybe<StringQueryOperatorInput>;
+  readonly ext: Maybe<StringQueryOperatorInput>;
+  readonly name: Maybe<StringQueryOperatorInput>;
+  readonly relativeDirectory: Maybe<StringQueryOperatorInput>;
+  readonly dev: Maybe<IntQueryOperatorInput>;
+  readonly mode: Maybe<IntQueryOperatorInput>;
+  readonly nlink: Maybe<IntQueryOperatorInput>;
+  readonly uid: Maybe<IntQueryOperatorInput>;
+  readonly gid: Maybe<IntQueryOperatorInput>;
+  readonly rdev: Maybe<IntQueryOperatorInput>;
+  readonly ino: Maybe<FloatQueryOperatorInput>;
+  readonly atimeMs: Maybe<FloatQueryOperatorInput>;
+  readonly mtimeMs: Maybe<FloatQueryOperatorInput>;
+  readonly ctimeMs: Maybe<FloatQueryOperatorInput>;
+  readonly atime: Maybe<DateQueryOperatorInput>;
+  readonly mtime: Maybe<DateQueryOperatorInput>;
+  readonly ctime: Maybe<DateQueryOperatorInput>;
+  readonly birthtime: Maybe<DateQueryOperatorInput>;
+  readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
+  readonly blksize: Maybe<IntQueryOperatorInput>;
+  readonly blocks: Maybe<IntQueryOperatorInput>;
+  readonly fields: Maybe<FileFieldsFilterInput>;
+  readonly publicURL: Maybe<StringQueryOperatorInput>;
+  readonly childrenImageSharp: Maybe<ImageSharpFilterListInput>;
+  readonly childImageSharp: Maybe<ImageSharpFilterInput>;
+  readonly childrenMdx: Maybe<MdxFilterListInput>;
+  readonly childMdx: Maybe<MdxFilterInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
 };
 
 type MdxHeadingMdxFilterListInput = {
@@ -1677,52 +1735,6 @@ type FileGroupConnection = {
   readonly pageInfo: PageInfo;
   readonly field: Scalars['String'];
   readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type FileFilterInput = {
-  readonly sourceInstanceName: Maybe<StringQueryOperatorInput>;
-  readonly absolutePath: Maybe<StringQueryOperatorInput>;
-  readonly relativePath: Maybe<StringQueryOperatorInput>;
-  readonly extension: Maybe<StringQueryOperatorInput>;
-  readonly size: Maybe<IntQueryOperatorInput>;
-  readonly prettySize: Maybe<StringQueryOperatorInput>;
-  readonly modifiedTime: Maybe<DateQueryOperatorInput>;
-  readonly accessTime: Maybe<DateQueryOperatorInput>;
-  readonly changeTime: Maybe<DateQueryOperatorInput>;
-  readonly birthTime: Maybe<DateQueryOperatorInput>;
-  readonly root: Maybe<StringQueryOperatorInput>;
-  readonly dir: Maybe<StringQueryOperatorInput>;
-  readonly base: Maybe<StringQueryOperatorInput>;
-  readonly ext: Maybe<StringQueryOperatorInput>;
-  readonly name: Maybe<StringQueryOperatorInput>;
-  readonly relativeDirectory: Maybe<StringQueryOperatorInput>;
-  readonly dev: Maybe<IntQueryOperatorInput>;
-  readonly mode: Maybe<IntQueryOperatorInput>;
-  readonly nlink: Maybe<IntQueryOperatorInput>;
-  readonly uid: Maybe<IntQueryOperatorInput>;
-  readonly gid: Maybe<IntQueryOperatorInput>;
-  readonly rdev: Maybe<IntQueryOperatorInput>;
-  readonly ino: Maybe<FloatQueryOperatorInput>;
-  readonly atimeMs: Maybe<FloatQueryOperatorInput>;
-  readonly mtimeMs: Maybe<FloatQueryOperatorInput>;
-  readonly ctimeMs: Maybe<FloatQueryOperatorInput>;
-  readonly atime: Maybe<DateQueryOperatorInput>;
-  readonly mtime: Maybe<DateQueryOperatorInput>;
-  readonly ctime: Maybe<DateQueryOperatorInput>;
-  readonly birthtime: Maybe<DateQueryOperatorInput>;
-  readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
-  readonly blksize: Maybe<IntQueryOperatorInput>;
-  readonly blocks: Maybe<IntQueryOperatorInput>;
-  readonly fields: Maybe<FileFieldsFilterInput>;
-  readonly publicURL: Maybe<StringQueryOperatorInput>;
-  readonly childrenImageSharp: Maybe<ImageSharpFilterListInput>;
-  readonly childImageSharp: Maybe<ImageSharpFilterInput>;
-  readonly childrenMdx: Maybe<MdxFilterListInput>;
-  readonly childMdx: Maybe<MdxFilterInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
 };
 
 type FileSortInput = {
@@ -2443,6 +2455,82 @@ type MdxFieldsEnum =
   | 'frontmatter.image'
   | 'frontmatter.cover.caption'
   | 'frontmatter.cover.image'
+  | 'frontmatter.logos.logo_white.sourceInstanceName'
+  | 'frontmatter.logos.logo_white.absolutePath'
+  | 'frontmatter.logos.logo_white.relativePath'
+  | 'frontmatter.logos.logo_white.extension'
+  | 'frontmatter.logos.logo_white.size'
+  | 'frontmatter.logos.logo_white.prettySize'
+  | 'frontmatter.logos.logo_white.modifiedTime'
+  | 'frontmatter.logos.logo_white.accessTime'
+  | 'frontmatter.logos.logo_white.changeTime'
+  | 'frontmatter.logos.logo_white.birthTime'
+  | 'frontmatter.logos.logo_white.root'
+  | 'frontmatter.logos.logo_white.dir'
+  | 'frontmatter.logos.logo_white.base'
+  | 'frontmatter.logos.logo_white.ext'
+  | 'frontmatter.logos.logo_white.name'
+  | 'frontmatter.logos.logo_white.relativeDirectory'
+  | 'frontmatter.logos.logo_white.dev'
+  | 'frontmatter.logos.logo_white.mode'
+  | 'frontmatter.logos.logo_white.nlink'
+  | 'frontmatter.logos.logo_white.uid'
+  | 'frontmatter.logos.logo_white.gid'
+  | 'frontmatter.logos.logo_white.rdev'
+  | 'frontmatter.logos.logo_white.ino'
+  | 'frontmatter.logos.logo_white.atimeMs'
+  | 'frontmatter.logos.logo_white.mtimeMs'
+  | 'frontmatter.logos.logo_white.ctimeMs'
+  | 'frontmatter.logos.logo_white.atime'
+  | 'frontmatter.logos.logo_white.mtime'
+  | 'frontmatter.logos.logo_white.ctime'
+  | 'frontmatter.logos.logo_white.birthtime'
+  | 'frontmatter.logos.logo_white.birthtimeMs'
+  | 'frontmatter.logos.logo_white.blksize'
+  | 'frontmatter.logos.logo_white.blocks'
+  | 'frontmatter.logos.logo_white.publicURL'
+  | 'frontmatter.logos.logo_white.childrenImageSharp'
+  | 'frontmatter.logos.logo_white.childrenMdx'
+  | 'frontmatter.logos.logo_white.id'
+  | 'frontmatter.logos.logo_white.children'
+  | 'frontmatter.logos.logo.sourceInstanceName'
+  | 'frontmatter.logos.logo.absolutePath'
+  | 'frontmatter.logos.logo.relativePath'
+  | 'frontmatter.logos.logo.extension'
+  | 'frontmatter.logos.logo.size'
+  | 'frontmatter.logos.logo.prettySize'
+  | 'frontmatter.logos.logo.modifiedTime'
+  | 'frontmatter.logos.logo.accessTime'
+  | 'frontmatter.logos.logo.changeTime'
+  | 'frontmatter.logos.logo.birthTime'
+  | 'frontmatter.logos.logo.root'
+  | 'frontmatter.logos.logo.dir'
+  | 'frontmatter.logos.logo.base'
+  | 'frontmatter.logos.logo.ext'
+  | 'frontmatter.logos.logo.name'
+  | 'frontmatter.logos.logo.relativeDirectory'
+  | 'frontmatter.logos.logo.dev'
+  | 'frontmatter.logos.logo.mode'
+  | 'frontmatter.logos.logo.nlink'
+  | 'frontmatter.logos.logo.uid'
+  | 'frontmatter.logos.logo.gid'
+  | 'frontmatter.logos.logo.rdev'
+  | 'frontmatter.logos.logo.ino'
+  | 'frontmatter.logos.logo.atimeMs'
+  | 'frontmatter.logos.logo.mtimeMs'
+  | 'frontmatter.logos.logo.ctimeMs'
+  | 'frontmatter.logos.logo.atime'
+  | 'frontmatter.logos.logo.mtime'
+  | 'frontmatter.logos.logo.ctime'
+  | 'frontmatter.logos.logo.birthtime'
+  | 'frontmatter.logos.logo.birthtimeMs'
+  | 'frontmatter.logos.logo.blksize'
+  | 'frontmatter.logos.logo.blocks'
+  | 'frontmatter.logos.logo.publicURL'
+  | 'frontmatter.logos.logo.childrenImageSharp'
+  | 'frontmatter.logos.logo.childrenMdx'
+  | 'frontmatter.logos.logo.id'
+  | 'frontmatter.logos.logo.children'
   | 'slug'
   | 'body'
   | 'excerpt'

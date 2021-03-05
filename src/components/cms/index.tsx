@@ -33,6 +33,59 @@ const config = {
     configurator.collections.pages(),
     configurator.collections.blog(),
     configurator.collections.settings(),
+    {
+      folder: "src/content/members",
+      ...configurator.collections.relativeMedia,
+      name: "members",
+      label: "Members",
+      label_singular: "Member",
+      create: true,
+      i18n: true,
+      // identifier_field: "id",
+      nested: {
+        depth: 2,
+        summary: "{{meta.path}}",
+      },
+      meta: configurator.meta,
+      summary: "{{title}}",
+      fields: [
+        configurator.fields.template,
+        configurator.fields.id,
+        {
+          label: "Title",
+          name: "title",
+          widget: "string",
+          i18n: "duplicate"
+        },
+        {
+          label: "Logos",
+          name: "logos",
+          widget: "object",
+          i18n: true,
+          fields: [
+            {
+              label: "Logo white",
+              name: "logo-white",
+              widget: "image",
+              i18n: "duplicate",
+            },
+            {
+              label: "Logo",
+              name: "logo",
+              widget: "image",
+              i18n: "duplicate",
+            },
+            // {
+            //   label: "Caption",
+            //   name: "caption",
+            //   widget: "string",
+            //   required: false,
+            //   i18n: true
+            // },
+          ],
+        }
+      ],
+    }
   ],
 };
 

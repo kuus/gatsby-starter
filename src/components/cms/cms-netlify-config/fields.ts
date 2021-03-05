@@ -5,6 +5,7 @@ export const template = {
   name: "template",
   widget: "hidden",
   default: "default",
+  i18n: "duplicate"
 };
 
 export const id = {
