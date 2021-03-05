@@ -595,11 +595,11 @@ type ImageSharpResize = {
 
 type MdxFrontmatter = {
   readonly title: Scalars['String'];
+  readonly id: Maybe<Scalars['String']>;
   readonly template: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
-  readonly image: Maybe<Scalars['String']>;
-  readonly id: Maybe<Scalars['String']>;
   readonly last_edit: Maybe<Scalars['Date']>;
+  readonly image: Maybe<Scalars['String']>;
   readonly cover: Maybe<MdxFrontmatterCover>;
 };
 
@@ -1200,11 +1200,11 @@ type MdxFilterInput = {
 
 type MdxFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
   readonly template: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
-  readonly image: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
   readonly last_edit: Maybe<DateQueryOperatorInput>;
+  readonly image: Maybe<StringQueryOperatorInput>;
   readonly cover: Maybe<MdxFrontmatterCoverFilterInput>;
 };
 
@@ -1456,11 +1456,11 @@ type FileFieldsEnum =
   | 'childrenMdx.rawBody'
   | 'childrenMdx.fileAbsolutePath'
   | 'childrenMdx.frontmatter.title'
+  | 'childrenMdx.frontmatter.id'
   | 'childrenMdx.frontmatter.template'
   | 'childrenMdx.frontmatter.slug'
-  | 'childrenMdx.frontmatter.image'
-  | 'childrenMdx.frontmatter.id'
   | 'childrenMdx.frontmatter.last_edit'
+  | 'childrenMdx.frontmatter.image'
   | 'childrenMdx.frontmatter.cover.caption'
   | 'childrenMdx.frontmatter.cover.image'
   | 'childrenMdx.slug'
@@ -1521,11 +1521,11 @@ type FileFieldsEnum =
   | 'childMdx.rawBody'
   | 'childMdx.fileAbsolutePath'
   | 'childMdx.frontmatter.title'
+  | 'childMdx.frontmatter.id'
   | 'childMdx.frontmatter.template'
   | 'childMdx.frontmatter.slug'
-  | 'childMdx.frontmatter.image'
-  | 'childMdx.frontmatter.id'
   | 'childMdx.frontmatter.last_edit'
+  | 'childMdx.frontmatter.image'
   | 'childMdx.frontmatter.cover.caption'
   | 'childMdx.frontmatter.cover.image'
   | 'childMdx.slug'
@@ -2436,11 +2436,11 @@ type MdxFieldsEnum =
   | 'rawBody'
   | 'fileAbsolutePath'
   | 'frontmatter.title'
+  | 'frontmatter.id'
   | 'frontmatter.template'
   | 'frontmatter.slug'
-  | 'frontmatter.image'
-  | 'frontmatter.id'
   | 'frontmatter.last_edit'
+  | 'frontmatter.image'
   | 'frontmatter.cover.caption'
   | 'frontmatter.cover.image'
   | 'slug'
@@ -2966,16 +2966,6 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type TemplatePagesAboutQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-type TemplatePagesAboutQuery = { readonly node: Maybe<(
-    Pick<Mdx, 'body'>
-    & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
-  )> };
-
 type TemplateDefaultQueryVariables = Exact<{
   id: Scalars['String'];
   locale: Scalars['String'];
@@ -2989,6 +2979,16 @@ type TemplateDefaultQuery = { readonly node: Maybe<(
         Pick<Mdx, 'id'>
         & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'route'>> }
       ) }> } };
+
+type TemplatePagesAboutQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type TemplatePagesAboutQuery = { readonly node: Maybe<(
+    Pick<Mdx, 'body'>
+    & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
+  )> };
 
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
