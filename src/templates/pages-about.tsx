@@ -4,23 +4,22 @@ import { Link, injectIntl } from "@kuus/gatsby-plugin-i18n";
 import Layout from "src/components/Layout";
 import { MDXRenderer } from "src/components/MDX";
 
-const PagesAbout: React.FC<{}> = ({ intl, data }) => {
-  const _ = intl.formatMessage;
-  const { title } = data.node.frontmatter;
+const TemplatePagesAbout: Page<GatsbyTypes.TemplatePagesAboutQuery> = ({ intl, data }) => {
+  // const _ = intl.formatMessage;
 
   return (
     <Layout>
-      {title}
-      <Link to="/">Back home</Link>
-      <MDXRenderer>{data.node.body}</MDXRenderer>
+      {data.node?.frontmatter?.title}
+      <Link to="pages/home">Back home</Link>
+      <MDXRenderer>{data.node?.body}</MDXRenderer>
     </Layout>
   );
 }
 
-export default injectIntl(PagesAbout);
+export default injectIntl(TemplatePagesAbout);
 
 export const query = graphql`
-  query PagesAbout($id: String!) {
+  query TemplatePagesAbout($id: String!) {
     node: mdx(id: { eq: $id }) {
       body
       frontmatter {

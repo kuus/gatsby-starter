@@ -2,6 +2,6 @@
 template: default
 id: dR_KvpSSTzHJ7LUyCBpFZ
 slug: /
-title: Home titolo
+title: Home nl title
 ---
-un **po** di contenuto
+sadsada

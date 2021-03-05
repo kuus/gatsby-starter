@@ -1,12 +1,39 @@
+import { CmsCollectionFile, CmsField } from "netlify-cms-core";
 import meta from "./meta";
 import fields from "./fields";
+import { titleCase } from "./helpers";
 
 const relativeMedia = {
   media_folder: "",
   public_folder: "",
 };
 
-export const pagesDynamic = (customFields = []) => ({
+export const page = (slug: string, customFields: CmsField[] = []) => ({
+  folder: `src/content/${slug}`,
+  ...relativeMedia,
+  name: slug,
+  label: titleCase(slug),
+  summary: "{{title}}",
+  i18n: true,
+  meta,
+  fields: [...fields.groups.base, ...customFields],
+});
+
+export const pages = (customFields: CmsField[] = []) => ({
+  folder: "src/content/pages",
+  ...relativeMedia,
+  name: "pages",
+  label: "Pages",
+  i18n: true,
+  nested: {
+    depth: 2,
+    summary: "{{title}}",
+  },
+  meta,
+  fields: [...fields.groups.base, ...customFields],
+});
+
+export const pagesDynamic = (customFields: CmsField[] = []) => ({
   folder: "src/content/pages",
   ...relativeMedia,
   name: "pages",
@@ -21,7 +48,7 @@ export const pagesDynamic = (customFields = []) => ({
   fields: [...fields.groups.base, ...customFields],
 });
 
-export const pagesStatic = (files = []) => ({
+export const pagesStatic = (files: CmsCollectionFile[] = []) => ({
   files,
   ...relativeMedia,
   name: "pages",
@@ -36,7 +63,7 @@ export const pagesStatic = (files = []) => ({
   meta,
 });
 
-export const blog = (customFields = []) => ({
+export const blog = (customFields: CmsField[] = []) => ({
   folder: "src/content/blog",
   ...relativeMedia,
   name: "blog",
@@ -45,7 +72,7 @@ export const blog = (customFields = []) => ({
   create: true,
   i18n: true,
   // path: "{{year}}--{{slug}}/index",
-  // slug: "{{fields.url}}",
+  // slug: "{{fields.slug}}",
   identifier_field: "id",
   summary: "{{title}}",
   nested: {
@@ -56,11 +83,10 @@ export const blog = (customFields = []) => ({
   fields: [...fields.groups.base, ...customFields],
 });
 
-export const settings = (customFields = []) => ({
+export const settings = (customFields: CmsField[] = []) => ({
   name: "settings",
   label: "Settings",
   label_singular: "Setting",
-  // folder: "src/content/settings",
   // i18n: true,
   i18n: {
     structure: "single_file",
@@ -70,14 +96,15 @@ export const settings = (customFields = []) => ({
   // path: "{{year}}--{{slug}}/index",
   // media_folder: "",
   // public_folder: "",
-  // slug: "{{fields.url}}",
+  // slug: "{{fields.slug}}",
   // identifier_field: "id",
   meta,
+  // folder: "src/content/settings",
   files: [
     {
       file: "src/content/settings/menu.yml",
-      label: "Settings",
-      name: "settings",
+      label: "Menu",
+      name: "menu",
       i18n: true,
       fields: [
         {
@@ -113,6 +140,8 @@ export const settings = (customFields = []) => ({
 });
 
 export default {
+  page,
+  pages,
   pagesDynamic,
   pagesStatic,
   blog,

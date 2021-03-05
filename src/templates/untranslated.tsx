@@ -2,7 +2,7 @@ import React from "react";
 import { Link, injectIntl } from "@kuus/gatsby-plugin-i18n";
 import Layout from "src/components/Layout";
 
-const Template = ({ i18n, intl }) => {
+const TemplateUntranslatedBare = ({ i18n, intl }) => {
   const _ = intl.formatMessage;
 
   return (
@@ -11,19 +11,19 @@ const Template = ({ i18n, intl }) => {
       {` `}
       {i18n.availableIn.map((route) => (
         <Link key={`availableIn${route.to}`} to={route.to}>
-          {_({ id: `UntranslatedTextLang_${route.lang}` })}
+          {_({ id: `UntranslatedTextLang_${route.locale}` })}
         </Link>
       ))}
     </>
   );
 }
 
-const LocalisedTemplate = injectIntl(Template);
+const TemplateUntranslatedLocalised = injectIntl(TemplateUntranslatedBare);
 
-const Untranslated = (props) => (
+const TemplateUntranslated = (props) => (
   <Layout {...props}>
-    <LocalisedTemplate i18n={props.pageContext.i18n} />
+    <TemplateUntranslatedLocalised i18n={props.pageContext.i18n} />
   </Layout>
 );
 
-export default Untranslated;
+export default TemplateUntranslated;

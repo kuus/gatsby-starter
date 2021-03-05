@@ -1,6 +1,6 @@
 ---
 template: pages-about
-url: /about
+slug: /about
 title: About page
 image: /img/coffee.png
 ---

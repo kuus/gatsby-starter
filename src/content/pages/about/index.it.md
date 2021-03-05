@@ -1,5 +1,5 @@
 ---
 template: pages-about
-url: /chi-siamo
+slug: /chi-siamo
 title: Pagina about
 ---

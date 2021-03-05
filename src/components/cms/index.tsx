@@ -10,6 +10,7 @@ import configurator from "./cms-netlify-config";
 // import cloudinary from "netlify-cms-media-library-cloudinary";
 
 import it from "netlify-cms-locales/dist/esm/it";
+import nl from "netlify-cms-locales/dist/esm/nl";
 
 const config = {
   backend: {
@@ -19,7 +20,7 @@ const config = {
   },
   i18n: {
     structure: "multiple_files",
-    locales: ["en", "it"],
+    locales: ["en", "it", "nl"],
     default_locale: "en",
   },
   // publish_mode: "editorial_workflow",
@@ -27,7 +28,9 @@ const config = {
   media_folder: "static/img",
   public_folder: "/img",
   collections: [
-    configurator.collections.pagesDynamic(),
+    // configurator.collections.page("about"),
+    // configurator.collections.page("home"),
+    configurator.collections.pages(),
     configurator.collections.blog(),
     configurator.collections.settings(),
   ],
@@ -35,6 +38,7 @@ const config = {
 
 CMS.init({ config });
 CMS.registerLocale("it", it);
+CMS.registerLocale("nl", nl);
 // CMS.registerMediaLibrary(uploadcare)
 // CMS.registerMediaLibrary(cloudinary)
 // CMS.registerPreviewTemplate("about", styled(PageAboutPreview));

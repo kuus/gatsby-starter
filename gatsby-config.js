@@ -1,4 +1,5 @@
 module.exports = {
+  flags: { FAST_DEV: true, PRESERVE_WEBPACK_CACHE: true },
   siteMetadata: {
     title: "Gatsby + Netlify CMS Starter",
     description: "...",
@@ -66,8 +67,13 @@ module.exports = {
       },
     },
     "gatsby-plugin-react-helmet",
-    "gatsby-plugin-graphql-codegen",
     "gatsby-plugin-root-import",
+    {
+      resolve: "gatsby-plugin-typegen",
+      options: {
+        outputPath: "src/gatsby.d.ts",
+      },
+    },
     {
       resolve: "gatsby-plugin-typescript",
       options: {
@@ -80,11 +86,15 @@ module.exports = {
       resolve: "@kuus/gatsby-plugin-i18n",
       options: {
         debug: false,
-        languages: ["en", "it"],
-        defaultLanguage: "en",
+        locales: ["en", "it", "nl"],
+        defaultLocale: "en",
+        // enforceLocalisedUrls: false,
+        hideDefaultLocaleInUrl: true,
         baseUrl: "http://localhost:8000",
-        untranslatedComponent: require.resolve(`${__dirname}/src/templates/untranslated.tsx`)
-      }
+        untranslatedComponent: require.resolve(
+          `${__dirname}/src/templates/untranslated.tsx`
+        ),
+      },
     },
     {
       resolve: "gatsby-plugin-netlify-cms",

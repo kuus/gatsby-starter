@@ -15,11 +15,11 @@ export const id = {
   // hidden: true // @see https://github.com/netlify/netlify-cms/issues/1975
 };
 
-export const url = {
-  label: "URL path",
-  name: "url",
+export const slug = {
+  label: "Slug",
+  name: "slug",
   widget: "string",
-  // TODO: do a mechanism to ensure url uniqueness
+  // TODO: do a mechanism to ensure slug uniqueness
   hint: "this will be the full relative URL in your production website, it must be unique",
   i18n: true,
   required: true,
@@ -119,7 +119,7 @@ export default {
     base: [
       template,
       id,
-      url,
+      slug,
       title,
       content,
       lastEdit,
@@ -128,7 +128,7 @@ export default {
   },
   template,
   id,
-  url,
+  slug,
   title,
   content,
   lastEdit,
