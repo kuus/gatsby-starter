@@ -13,7 +13,7 @@ const TemplatePagesHome: Page<GatsbyTypes.TemplatePagesHomeQuery> = ({ intl, dat
       {data.node?.frontmatter?.title}
       <Link to="pages/home">Back home</Link>
       <MDXRenderer>{data.node?.body}</MDXRenderer>
-      <Members/>
+      <Members data={data.members} />
     </Layout>
   );
 }
@@ -26,6 +26,16 @@ export const query = graphql`
       body
       frontmatter {
         title
+      }
+    }
+    members: allMdx(filter: {fileAbsolutePath: {glob: "**/members/**/*"}}) {
+      edges {
+        node {
+          slug
+          frontmatter {
+            title
+          }
+        }
       }
     }
   }

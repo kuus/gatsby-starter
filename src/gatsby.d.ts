@@ -3210,7 +3210,10 @@ type TemplatePagesHomeQueryVariables = Exact<{
 type TemplatePagesHomeQuery = { readonly node: Maybe<(
     Pick<Mdx, 'body'>
     & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
-  )> };
+  )>, readonly members: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<Mdx, 'slug'>
+        & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
+      ) }> } };
 
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
