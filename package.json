@@ -12,7 +12,8 @@
     "cms": "npx netlify-cms-proxy-server",
     "build": "npx gatsby clean && npx gatsby build",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "kill": "killall -9 node"
   },
   "dependencies": {
     "react-helmet": "^6.1.0"

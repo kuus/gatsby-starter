@@ -1,5 +1,4 @@
 ---
-template: default
 id: mUuuC41kfL0xYsXmhcjbs
 title: Test2
 logos:

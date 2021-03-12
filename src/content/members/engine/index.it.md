@@ -1,5 +1,4 @@
 ---
-template: default
 id: Bpu8RZ8hMnFY0kqyr8zf4
 title: Engine
 logos:

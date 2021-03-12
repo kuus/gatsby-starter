@@ -23,6 +23,13 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        path: `${__dirname}/src/templates`,
+        name: "templates",
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         path: `${__dirname}/src/assets`,
         name: "images",
       },
@@ -96,13 +103,13 @@ module.exports = {
         ),
       },
     },
-    {
-      resolve: "gatsby-plugin-netlify-cms",
-      options: {
-        manualInit: true,
-        modulePath: `${__dirname}/src/components/cms/index.tsx`,
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-netlify-cms",
+    //   options: {
+    //     manualInit: true,
+    //     modulePath: `${__dirname}/src/components/cms/index.tsx`,
+    //   },
+    // },
     "gatsby-plugin-netlify",
   ],
 };
