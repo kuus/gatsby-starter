@@ -1,13 +1,16 @@
+import { CmsField } from "netlify-cms-core";
 // basic-entry
 
-export const template = {
+export const template: CmsField = {
   label: "Template",
   name: "template",
   widget: "hidden",
   default: "default",
+  i18n: "duplicate",
+  required: false
 };
 
-export const id = {
+export const id: CmsField = {
   label: "ID",
   name: "id",
   widget: "id",
@@ -15,24 +18,23 @@ export const id = {
   // hidden: true // @see https://github.com/netlify/netlify-cms/issues/1975
 };
 
-export const slug = {
+export const slug: CmsField = {
   label: "Slug",
   name: "slug",
   widget: "string",
   // TODO: do a mechanism to ensure slug uniqueness
   hint: "this will be the full relative URL in your production website, it must be unique",
   i18n: true,
-  required: true,
 };
 
-export const title = {
+export const title: CmsField = {
   label: "Title",
   name: "title",
   widget: "string",
   i18n: true,
 };
 
-export const content = {
+export const content: CmsField = {
   label: "Content",
   name: "body",
   widget: "markdown",
@@ -40,14 +42,14 @@ export const content = {
   required: false,
 };
 
-export const lastEdit = {
+export const lastEdit: CmsField = {
   label: "Last update",
   name: "last_edit",
   widget: "hidden",
   required: false,
 };
 
-export const seo = {
+export const seo: CmsField = {
   label: "SEO",
   name: "seo",
   widget: "object",
@@ -85,7 +87,7 @@ export const seo = {
   ],
 };
 
-export const cover = {
+export const cover: CmsField = {
   label: "Cover Image",
   name: "cover",
   widget: "object",
@@ -114,17 +116,24 @@ export const cover = {
   ],
 };
 
+const groupsBase = [
+  id,
+  lastEdit,
+]
+
+const groupsPage = [
+  ...groupsBase,
+  slug,
+  template,
+  title,
+  content,
+  seo,
+]
+
 export default {
   groups: {
-    base: [
-      template,
-      id,
-      slug,
-      title,
-      content,
-      lastEdit,
-      seo,
-    ]
+    base: groupsBase,
+    page: groupsPage
   },
   template,
   id,

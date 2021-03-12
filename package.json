@@ -12,13 +12,14 @@
     "cms": "npx netlify-cms-proxy-server",
     "build": "npx gatsby clean && npx gatsby build",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "kill": "killall -9 node"
   },
   "dependencies": {
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
-    "@kuus/gatsby-plugin-i18n": "0.0.4",
+    "@kuus/gatsby-plugin-i18n": "0.0.5",
     "@mdx-js/mdx": "^2.0.0-next.8",
     "@mdx-js/react": "^2.0.0-next.8",
     "@types/styled-components": "^5.1.7",

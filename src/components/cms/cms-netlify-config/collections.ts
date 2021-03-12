@@ -9,14 +9,30 @@ const relativeMedia = {
 };
 
 export const page = (slug: string, customFields: CmsField[] = []) => ({
-  folder: `src/content/${slug}`,
+  folder: `src/content/pages/${slug}`,
   ...relativeMedia,
   name: slug,
   label: titleCase(slug),
   summary: "{{title}}",
   i18n: true,
   meta,
-  fields: [...fields.groups.base, ...customFields],
+  fields: [...fields.groups.page, ...customFields],
+});
+
+export const pageStatic = (
+  slug: string,
+  customFields: CmsField[] = []
+): CmsCollectionFile => ({
+  name: slug,
+  label: titleCase(slug),
+  file: `src/content/pages/${slug}`,
+  fields: [...fields.groups.page, ...customFields],
+  // label_singular: "",
+  // description: "",
+  // preview_path?: string;
+  // preview_path_date_field?: string;
+  i18n: true,
+  ...relativeMedia,
 });
 
 export const pages = (customFields: CmsField[] = []) => ({
@@ -30,7 +46,7 @@ export const pages = (customFields: CmsField[] = []) => ({
     summary: "{{title}}",
   },
   meta,
-  fields: [...fields.groups.base, ...customFields],
+  fields: [...fields.groups.page, ...customFields],
 });
 
 export const pagesDynamic = (customFields: CmsField[] = []) => ({
@@ -45,7 +61,7 @@ export const pagesDynamic = (customFields: CmsField[] = []) => ({
     summary: "{{title}}",
   },
   meta,
-  fields: [...fields.groups.base, ...customFields],
+  fields: [...fields.groups.page, ...customFields],
 });
 
 export const pagesStatic = (files: CmsCollectionFile[] = []) => ({
@@ -80,7 +96,32 @@ export const blog = (customFields: CmsField[] = []) => ({
     summary: "{{meta.path}}",
   },
   meta,
-  fields: [...fields.groups.base, ...customFields],
+  fields: [...fields.groups.page, ...customFields],
+});
+
+export const faq = (customFields: CmsField[] = []) => ({
+  folder: "src/content/faq",
+  ...relativeMedia,
+  name: "faq",
+  label: "FAQ",
+  label_singular: "Question",
+  create: true,
+  i18n: true,
+  // path: "{{year}}--{{slug}}/index",
+  // slug: "{{fields.slug}}",
+  // identifier_field: "question",
+  summary: "{{title}}",
+  nested: {
+    depth: 2,
+    summary: "{{meta.path}}",
+  },
+  meta,
+  fields: [
+    ...fields.groups.base,
+    fields.title,
+    { ...fields.content, required: true },
+    ...customFields,
+  ],
 });
 
 export const settings = (customFields: CmsField[] = []) => ({
@@ -140,10 +181,12 @@ export const settings = (customFields: CmsField[] = []) => ({
 });
 
 export default {
-  page,
   pages,
   pagesDynamic,
+  page,
   pagesStatic,
+  pageStatic,
   blog,
+  faq,
   settings,
 };
