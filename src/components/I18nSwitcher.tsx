@@ -2,6 +2,7 @@ import React from "react";
 import { globalHistory } from "@reach/router";
 import {
   IntlContextConsumer,
+  // useI18n,
   changeLocale,
   getCurrentRoute,
   FormattedMessage,
@@ -9,7 +10,8 @@ import {
 
 const I18nSwitcher = React.forwardRef((props, ref) => {
   const { location } = globalHistory;
-
+  // const a = useI18n();
+debugger;
   return (
     <nav>
       {props.children}

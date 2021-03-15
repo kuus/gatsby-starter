@@ -34,11 +34,11 @@ export const query = graphql`
       edges {
         node {
           localisedUrlPath: path
-          templatePath: component
-          context {
-            routeId: route
-            urlPath: slug
-          }
+          # templatePath: component
+          # context {
+          #   routeId: route
+          #   urlPath: slug
+          # }
         }
       }
     }

@@ -1,4 +1,4 @@
-import { CmsField } from "netlify-cms-core";
+import { CmsField, CmsFieldId } from "netlify-cms-core";
 // basic-entry
 
 export const template: CmsField = {

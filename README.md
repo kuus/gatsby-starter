@@ -1,5 +1,7 @@
 # Gatsby starter
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9d55e649-1f94-4b21-8b39-320e4c3216c8/deploy-status)](https://app.netlify.com/sites/kuus-gatsby-starter/deploys)
+
 ```bash
 npm install
 

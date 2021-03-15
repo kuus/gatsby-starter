@@ -93,7 +93,7 @@ module.exports = {
       resolve: "@kuus/gatsby-plugin-i18n",
       options: {
         debug: false,
-        locales: ["en", "it", "nl"],
+        locales: ["en", "it"],
         defaultLocale: "en",
         // enforceLocalisedUrls: false,
         hideDefaultLocaleInUrl: true,

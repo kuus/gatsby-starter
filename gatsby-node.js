@@ -1,6 +1,4 @@
-const {
-  onCreatePage,
-} = require("@kuus/gatsby-plugin-i18n/utils-plugin");
+const { onCreatePage } = require("@kuus/gatsby-plugin-i18n/onCreatePage");
 
 /**
  * Implement Gatsby's Node APIs in this file.

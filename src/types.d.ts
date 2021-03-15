@@ -1,6 +1,7 @@
 declare type Page<T> = import("react").FC<{
   data: T;
-  intl: {
-    formatMessage: (msg?: object, dynamicData?: object) => string;
-  };
+  intl: import("react-intl").IntlShape;
+  // intl: {
+  //   formatMessage: (msg?: object, dynamicData?: object) => string;
+  // }
 }>;
