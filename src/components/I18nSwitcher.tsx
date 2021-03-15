@@ -11,7 +11,7 @@ import {
 const I18nSwitcher = React.forwardRef((props, ref) => {
   const { location } = globalHistory;
   // const a = useI18n();
-debugger;
+// debugger;
   return (
     <nav>
       {props.children}
