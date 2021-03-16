@@ -95,8 +95,6 @@ module.exports = {
         debug: false,
         locales: ["en", "it"],
         defaultLocale: "en",
-        // enforceLocalisedUrls: false,
-        hideDefaultLocaleInUrl: true,
         baseUrl: "https://kuus-gatsby-starter.netlify.app",
         untranslatedComponent: require.resolve(
           `${__dirname}/src/templates/untranslated.tsx`
