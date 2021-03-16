@@ -589,13 +589,13 @@ type ImageSharpResize = {
 
 type MdxFrontmatter = {
   readonly title: Scalars['String'];
-  readonly template: Maybe<Scalars['String']>;
   readonly id: Maybe<Scalars['String']>;
+  readonly template: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly last_edit: Maybe<Scalars['Date']>;
-  readonly seo: Maybe<MdxFrontmatterSeo>;
   readonly image: Maybe<Scalars['String']>;
   readonly cover: Maybe<MdxFrontmatterCover>;
+  readonly seo: Maybe<MdxFrontmatterSeo>;
 };
 
 
@@ -606,13 +606,13 @@ type MdxFrontmatter_last_editArgs = {
   locale: Maybe<Scalars['String']>;
 };
 
-type MdxFrontmatterSeo = {
-  readonly isExcludedFromSitemap: Maybe<Scalars['Boolean']>;
-};
-
 type MdxFrontmatterCover = {
   readonly caption: Maybe<Scalars['String']>;
   readonly image: Maybe<File>;
+};
+
+type MdxFrontmatterSeo = {
+  readonly isExcludedFromSitemap: Maybe<Scalars['Boolean']>;
 };
 
 type MdxHeadingMdx = {
@@ -733,7 +733,6 @@ type SitePluginPluginOptions = {
   readonly debug: Maybe<Scalars['Boolean']>;
   readonly locales: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly defaultLocale: Maybe<Scalars['String']>;
-  readonly hideDefaultLocaleInUrl: Maybe<Scalars['Boolean']>;
   readonly baseUrl: Maybe<Scalars['String']>;
   readonly untranslatedComponent: Maybe<Scalars['String']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
@@ -1200,17 +1199,13 @@ type MdxFilterInput = {
 
 type MdxFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly template: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
+  readonly template: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly last_edit: Maybe<DateQueryOperatorInput>;
-  readonly seo: Maybe<MdxFrontmatterSeoFilterInput>;
   readonly image: Maybe<StringQueryOperatorInput>;
   readonly cover: Maybe<MdxFrontmatterCoverFilterInput>;
-};
-
-type MdxFrontmatterSeoFilterInput = {
-  readonly isExcludedFromSitemap: Maybe<BooleanQueryOperatorInput>;
+  readonly seo: Maybe<MdxFrontmatterSeoFilterInput>;
 };
 
 type MdxFrontmatterCoverFilterInput = {
@@ -1262,6 +1257,10 @@ type FileFilterInput = {
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
   readonly internal: Maybe<InternalFilterInput>;
+};
+
+type MdxFrontmatterSeoFilterInput = {
+  readonly isExcludedFromSitemap: Maybe<BooleanQueryOperatorInput>;
 };
 
 type MdxHeadingMdxFilterListInput = {
@@ -1507,13 +1506,13 @@ type FileFieldsEnum =
   | 'childrenMdx.rawBody'
   | 'childrenMdx.fileAbsolutePath'
   | 'childrenMdx.frontmatter.title'
-  | 'childrenMdx.frontmatter.template'
   | 'childrenMdx.frontmatter.id'
+  | 'childrenMdx.frontmatter.template'
   | 'childrenMdx.frontmatter.slug'
   | 'childrenMdx.frontmatter.last_edit'
-  | 'childrenMdx.frontmatter.seo.isExcludedFromSitemap'
   | 'childrenMdx.frontmatter.image'
   | 'childrenMdx.frontmatter.cover.caption'
+  | 'childrenMdx.frontmatter.seo.isExcludedFromSitemap'
   | 'childrenMdx.slug'
   | 'childrenMdx.body'
   | 'childrenMdx.excerpt'
@@ -1572,13 +1571,13 @@ type FileFieldsEnum =
   | 'childMdx.rawBody'
   | 'childMdx.fileAbsolutePath'
   | 'childMdx.frontmatter.title'
-  | 'childMdx.frontmatter.template'
   | 'childMdx.frontmatter.id'
+  | 'childMdx.frontmatter.template'
   | 'childMdx.frontmatter.slug'
   | 'childMdx.frontmatter.last_edit'
-  | 'childMdx.frontmatter.seo.isExcludedFromSitemap'
   | 'childMdx.frontmatter.image'
   | 'childMdx.frontmatter.cover.caption'
+  | 'childMdx.frontmatter.seo.isExcludedFromSitemap'
   | 'childMdx.slug'
   | 'childMdx.body'
   | 'childMdx.excerpt'
@@ -2163,7 +2162,6 @@ type SitePluginPluginOptionsFilterInput = {
   readonly debug: Maybe<BooleanQueryOperatorInput>;
   readonly locales: Maybe<StringQueryOperatorInput>;
   readonly defaultLocale: Maybe<StringQueryOperatorInput>;
-  readonly hideDefaultLocaleInUrl: Maybe<BooleanQueryOperatorInput>;
   readonly baseUrl: Maybe<StringQueryOperatorInput>;
   readonly untranslatedComponent: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
@@ -2405,7 +2403,6 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.debug'
   | 'pluginCreator.pluginOptions.locales'
   | 'pluginCreator.pluginOptions.defaultLocale'
-  | 'pluginCreator.pluginOptions.hideDefaultLocaleInUrl'
   | 'pluginCreator.pluginOptions.baseUrl'
   | 'pluginCreator.pluginOptions.untranslatedComponent'
   | 'pluginCreator.pluginOptions.pathCheck'
@@ -2654,11 +2651,10 @@ type MdxFieldsEnum =
   | 'rawBody'
   | 'fileAbsolutePath'
   | 'frontmatter.title'
-  | 'frontmatter.template'
   | 'frontmatter.id'
+  | 'frontmatter.template'
   | 'frontmatter.slug'
   | 'frontmatter.last_edit'
-  | 'frontmatter.seo.isExcludedFromSitemap'
   | 'frontmatter.image'
   | 'frontmatter.cover.caption'
   | 'frontmatter.cover.image.sourceInstanceName'
@@ -2699,6 +2695,7 @@ type MdxFieldsEnum =
   | 'frontmatter.cover.image.childrenMdx'
   | 'frontmatter.cover.image.id'
   | 'frontmatter.cover.image.children'
+  | 'frontmatter.seo.isExcludedFromSitemap'
   | 'slug'
   | 'body'
   | 'excerpt'
@@ -3095,7 +3092,6 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.debug'
   | 'pluginOptions.locales'
   | 'pluginOptions.defaultLocale'
-  | 'pluginOptions.hideDefaultLocaleInUrl'
   | 'pluginOptions.baseUrl'
   | 'pluginOptions.untranslatedComponent'
   | 'pluginOptions.pathCheck'
@@ -3152,6 +3148,14 @@ type TemplateDefaultQuery = { readonly node: Maybe<(
         & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'route'>> }
       ) }> } };
 
+type PageAdminQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PageAdminQuery = { readonly i18n: Maybe<(
+    Pick<SitePlugin, 'name'>
+    & { readonly pluginOptions: Maybe<Pick<SitePluginPluginOptions, 'locales' | 'defaultLocale'>> }
+  )>, readonly templates: { readonly edges: ReadonlyArray<{ readonly node: Pick<File, 'name' | 'relativePath'> }> }, readonly pages: { readonly edges: ReadonlyArray<{ readonly node: { localisedUrlPath: SitePage['path'] } }> }, readonly meta: Maybe<Pick<Site, 'buildTime'>> };
+
 type TemplatePagesAboutQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -3187,13 +3191,5 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
-
-type PageAdminQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PageAdminQuery = { readonly i18n: Maybe<(
-    Pick<SitePlugin, 'name'>
-    & { readonly pluginOptions: Maybe<Pick<SitePluginPluginOptions, 'locales' | 'defaultLocale'>> }
-  )>, readonly templates: { readonly edges: ReadonlyArray<{ readonly node: Pick<File, 'name' | 'relativePath'> }> }, readonly pages: { readonly edges: ReadonlyArray<{ readonly node: { localisedUrlPath: SitePage['path'] } }> }, readonly meta: Maybe<Pick<Site, 'buildTime'>> };
 
 }
