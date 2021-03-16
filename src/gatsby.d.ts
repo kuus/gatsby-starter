@@ -594,8 +594,8 @@ type MdxFrontmatter = {
   readonly slug: Maybe<Scalars['String']>;
   readonly last_edit: Maybe<Scalars['Date']>;
   readonly seo: Maybe<MdxFrontmatterSeo>;
-  readonly image: Maybe<Scalars['String']>;
   readonly cover: Maybe<MdxFrontmatterCover>;
+  readonly image: Maybe<Scalars['String']>;
 };
 
 
@@ -1200,8 +1200,8 @@ type MdxFrontmatterFilterInput = {
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly last_edit: Maybe<DateQueryOperatorInput>;
   readonly seo: Maybe<MdxFrontmatterSeoFilterInput>;
-  readonly image: Maybe<StringQueryOperatorInput>;
   readonly cover: Maybe<MdxFrontmatterCoverFilterInput>;
+  readonly image: Maybe<StringQueryOperatorInput>;
 };
 
 type MdxFrontmatterSeoFilterInput = {
@@ -1461,9 +1461,9 @@ type FileFieldsEnum =
   | 'childrenMdx.frontmatter.slug'
   | 'childrenMdx.frontmatter.last_edit'
   | 'childrenMdx.frontmatter.seo.isExcludedFromSitemap'
-  | 'childrenMdx.frontmatter.image'
   | 'childrenMdx.frontmatter.cover.caption'
   | 'childrenMdx.frontmatter.cover.image'
+  | 'childrenMdx.frontmatter.image'
   | 'childrenMdx.slug'
   | 'childrenMdx.body'
   | 'childrenMdx.excerpt'
@@ -1527,9 +1527,9 @@ type FileFieldsEnum =
   | 'childMdx.frontmatter.slug'
   | 'childMdx.frontmatter.last_edit'
   | 'childMdx.frontmatter.seo.isExcludedFromSitemap'
-  | 'childMdx.frontmatter.image'
   | 'childMdx.frontmatter.cover.caption'
   | 'childMdx.frontmatter.cover.image'
+  | 'childMdx.frontmatter.image'
   | 'childMdx.slug'
   | 'childMdx.body'
   | 'childMdx.excerpt'
@@ -2439,9 +2439,9 @@ type MdxFieldsEnum =
   | 'frontmatter.slug'
   | 'frontmatter.last_edit'
   | 'frontmatter.seo.isExcludedFromSitemap'
-  | 'frontmatter.image'
   | 'frontmatter.cover.caption'
   | 'frontmatter.cover.image'
+  | 'frontmatter.image'
   | 'slug'
   | 'body'
   | 'excerpt'
@@ -2961,11 +2961,6 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type PageTestQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type PageTestQueryQuery = { readonly allSitePlugin: { readonly edges: ReadonlyArray<{ readonly node: Pick<SitePlugin, 'name' | 'version'> }> } };
-
 type PageAdminQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2997,6 +2992,11 @@ type TemplateDefaultQuery = { readonly node: Maybe<(
         Pick<Mdx, 'id'>
         & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'route'>> }
       ) }> } };
+
+type PageTestQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type PageTestQueryQuery = { readonly allSitePlugin: { readonly edges: ReadonlyArray<{ readonly node: Pick<SitePlugin, 'name' | 'version'> }> } };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
