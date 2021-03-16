@@ -589,8 +589,8 @@ type ImageSharpResize = {
 
 type MdxFrontmatter = {
   readonly title: Scalars['String'];
-  readonly id: Maybe<Scalars['String']>;
   readonly template: Maybe<Scalars['String']>;
+  readonly id: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly last_edit: Maybe<Scalars['Date']>;
   readonly seo: Maybe<MdxFrontmatterSeo>;
@@ -1195,8 +1195,8 @@ type MdxFilterInput = {
 
 type MdxFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
   readonly template: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly last_edit: Maybe<DateQueryOperatorInput>;
   readonly seo: Maybe<MdxFrontmatterSeoFilterInput>;
@@ -1456,8 +1456,8 @@ type FileFieldsEnum =
   | 'childrenMdx.rawBody'
   | 'childrenMdx.fileAbsolutePath'
   | 'childrenMdx.frontmatter.title'
-  | 'childrenMdx.frontmatter.id'
   | 'childrenMdx.frontmatter.template'
+  | 'childrenMdx.frontmatter.id'
   | 'childrenMdx.frontmatter.slug'
   | 'childrenMdx.frontmatter.last_edit'
   | 'childrenMdx.frontmatter.seo.isExcludedFromSitemap'
@@ -1522,8 +1522,8 @@ type FileFieldsEnum =
   | 'childMdx.rawBody'
   | 'childMdx.fileAbsolutePath'
   | 'childMdx.frontmatter.title'
-  | 'childMdx.frontmatter.id'
   | 'childMdx.frontmatter.template'
+  | 'childMdx.frontmatter.id'
   | 'childMdx.frontmatter.slug'
   | 'childMdx.frontmatter.last_edit'
   | 'childMdx.frontmatter.seo.isExcludedFromSitemap'
@@ -2434,8 +2434,8 @@ type MdxFieldsEnum =
   | 'rawBody'
   | 'fileAbsolutePath'
   | 'frontmatter.title'
-  | 'frontmatter.id'
   | 'frontmatter.template'
+  | 'frontmatter.id'
   | 'frontmatter.slug'
   | 'frontmatter.last_edit'
   | 'frontmatter.seo.isExcludedFromSitemap'
@@ -2975,16 +2975,6 @@ type TemplateDefaultQuery = { readonly node: Maybe<(
         & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'route'>> }
       ) }> } };
 
-type TemplatePagesAboutQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-type TemplatePagesAboutQuery = { readonly node: Maybe<(
-    Pick<Mdx, 'body'>
-    & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
-  )> };
-
 type PageAdminQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3023,5 +3013,15 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type TemplatePagesAboutQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type TemplatePagesAboutQuery = { readonly node: Maybe<(
+    Pick<Mdx, 'body'>
+    & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
+  )> };
 
 }
