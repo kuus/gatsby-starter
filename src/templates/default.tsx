@@ -1,12 +1,10 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Link, injectIntl } from "@kuus/gatsby-plugin-i18n";
+import { Link } from "@kuus/gatsby-plugin-i18n";
 import Layout from "src/components/Layout";
 import { MDXRenderer } from "src/components/MDX";
 
-const TemplateDefault: Page<GatsbyTypes.TemplateDefaultQuery> = ({ intl, data }) => {
-  // const _ = intl.formatMessage;
-
+const TemplateDefault: Page<GatsbyTypes.TemplateDefaultQuery> = ({ data }) => {
   return (
     <Layout>
       {data.node?.frontmatter?.title}
@@ -16,7 +14,7 @@ const TemplateDefault: Page<GatsbyTypes.TemplateDefaultQuery> = ({ intl, data })
   );
 }
 
-export default injectIntl(TemplateDefault);
+export default TemplateDefault;
 
 export const query = graphql`
   query TemplateDefault($id: String!, $locale: String!) {

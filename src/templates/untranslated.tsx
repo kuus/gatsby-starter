@@ -1,24 +1,20 @@
 import React from "react";
-import { Link, injectIntl } from "@kuus/gatsby-plugin-i18n";
+import { Link, _ } from "@kuus/gatsby-plugin-i18n";
 import Layout from "src/components/Layout";
 
-const TemplateUntranslatedBare = ({ i18n, intl }) => {
-  const _ = intl.formatMessage;
-
+const TemplateUntranslatedLocalised = ({ i18n }) => {
   return (
     <>
-      {_({ id: "UntranslatedText" })}
+      {_("UntranslatedText")}
       {` `}
       {i18n.availableIn.map((route) => (
         <Link key={`availableIn${route.to}`} to={route.to}>
-          {_({ id: `UntranslatedTextLang_${route.locale}` })}
+          {_(`UntranslatedTextLang_${route.locale}`)}
         </Link>
       ))}
     </>
   );
 }
-
-const TemplateUntranslatedLocalised = injectIntl(TemplateUntranslatedBare);
 
 const TemplateUntranslated = (props) => (
   <Layout {...props}>

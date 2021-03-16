@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { injectIntl } from "@kuus/gatsby-plugin-i18n";
 import Layout from "src/components/Layout";
 
 // const PageTestQuery: React.FC<{ data: GatsbyTypes.PagesTestQuery }> = ({ data }) => {
@@ -22,7 +21,7 @@ const PageTestQuery: Page<GatsbyTypes.PagesTestQueryQuery> = ({ data }) => {
   );
 };
 
-export default injectIntl(PageTestQuery);
+export default PageTestQuery;
 
 export const query = graphql`
   query PageTestQuery {
