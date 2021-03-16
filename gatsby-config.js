@@ -103,13 +103,11 @@ module.exports = {
         ),
       },
     },
-    // {
-    //   resolve: "gatsby-plugin-netlify-cms",
-    //   options: {
-    //     manualInit: true,
-    //     modulePath: `${__dirname}/src/components/cms/index.tsx`,
-    //   },
-    // },
+    // TODO: implement
+    // "gatsby-plugin-robots-txt",
+    // "gatsby-plugin-manifest",
+    // "gatsby-plugin-sitemap",
+    // "gatsby-plugin-offline",
     "gatsby-plugin-netlify",
   ],
 };
