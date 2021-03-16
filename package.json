@@ -10,7 +10,8 @@
     "start:gatsby": "npx gatsby develop",
     "start:cms": "npx netlify-cms-proxy-server",
     "cms": "npx netlify-cms-proxy-server",
-    "build": "npx gatsby clean && npx gatsby build",
+    "build": "npx gatsby build",
+    "clean": "npx gatsby clean",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "kill": "killall -9 node"
