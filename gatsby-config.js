@@ -1,6 +1,9 @@
+require('dotenv').config();
+
 module.exports = {
   flags: { FAST_DEV: true, PRESERVE_WEBPACK_CACHE: true },
   siteMetadata: {
+    siteUrl: "https://kuus-gatsby-starter.netlify.app",
     title: "Gatsby + Netlify CMS Starter",
     description: "...",
   },
@@ -34,6 +37,18 @@ module.exports = {
         name: "images",
       },
     },
+    // {
+    //   resolve:`gatsby-source-cloudinary`,
+    //   options: {
+    //     cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    //     apiKey: process.env.CLOUDINARY_API_KEY,
+    //     apiSecret: process.env.CLOUDINARY_API_SECRET,
+    //     context: true,
+    //     // prefix: "gatsby-starter",
+    //     // resourceType: "image",
+    //     // type: "upload",
+    //   }
+    // },
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
@@ -93,10 +108,6 @@ module.exports = {
       resolve: "@kuus/gatsby-plugin-i18n",
       options: {
         debug: false,
-        locales: ["en", "it"],
-        defaultLocale: "en",
-        hideDefaultLocaleInUrl: false,
-        baseUrl: "https://kuus-gatsby-starter.netlify.app",
         untranslatedComponent: require.resolve(
           `${__dirname}/src/templates/untranslated.tsx`
         ),

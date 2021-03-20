@@ -1,10 +1,15 @@
-const { onCreatePage } = require("@kuus/gatsby-plugin-i18n/onCreatePage");
+const { sourceNodes, onCreatePage } = require("@kuus/gatsby-plugin-i18n/api");
 
 /**
  * Implement Gatsby's Node APIs in this file.
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-exports.onCreatePage = ({ page, actions }) => {
-  onCreatePage({ page, actions });
+
+exports.sourceNodes = (args) => {
+  sourceNodes(args);
+};
+
+exports.onCreatePage = (args) => {
+  onCreatePage(args);
 };

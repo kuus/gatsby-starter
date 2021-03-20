@@ -7,8 +7,7 @@ import CMS from "netlify-cms-app";
 import configurator from "./cms-netlify-config";
 // import styled from "./cms-netlify/withStyledComponents";
 // import PageAboutPreview from "src/templates/pages-about";
-// import uploadcare from "netlify-cms-media-library-uploadcare";
-// import cloudinary from "netlify-cms-media-library-cloudinary";
+import cloudinary from "netlify-cms-media-library-cloudinary";
 
 import it from "netlify-cms-locales/dist/esm/it";
 // import nl from "netlify-cms-locales/dist/esm/nl";
@@ -37,6 +36,13 @@ export default function GatsbyNetlifyCMS(graphqlData: GatsbyTypes.PageAdminQuery
       default_locale: defaultLocale,
     },
     // publish_mode: "editorial_workflow",
+    media_library: {
+      name: "cloudinary",
+      config: {
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+      }
+    },
     local_backend: true,
     media_folder: "static/img",
     public_folder: "/img",
@@ -60,8 +66,7 @@ export default function GatsbyNetlifyCMS(graphqlData: GatsbyTypes.PageAdminQuery
   CMS.init({ config });
   CMS.registerLocale("it", it);
   // CMS.registerLocale("nl", nl);
-  // CMS.registerMediaLibrary(uploadcare)
-  // CMS.registerMediaLibrary(cloudinary)
+  CMS.registerMediaLibrary(cloudinary)
   // CMS.registerPreviewTemplate("about", styled(PageAboutPreview));
   
   configurator.register(CMS);

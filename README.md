@@ -38,4 +38,5 @@ In `/static/admin/confiq.yml`, the CMS can be configured.
 
 ## Caveats
 
-- TODO: remove `plugins/gatsby-remark-mdx-v2-images` once mdx v2 is well supported by gatsby ecosystem, we can also remove the following deps then: `unist-util-visit`, `hast-util-from-dom` and `jsdom` @see https://github.com/mdx-js/mdx/issues/1041
+- TODO: remove `plugins/gatsby-remark-mdx-v2-images` once mdx v2 is well supported by gatsby ecosystem, we can also remove the following deps then: `unist-util-visit`, `hast-util-from-dom` and `jsdom`, see [issue](https://github.com/mdx-js/mdx/issues/1041)
+- Create a collection `shortlinks`, they can be created and assigned to content pages, we can check and prevent duplicates. The resulting file is then used to create the netlify redirects with Gatsby's `createRedirect`.
