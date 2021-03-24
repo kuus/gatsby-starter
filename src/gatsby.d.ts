@@ -32,6 +32,7 @@ type Scalars = {
 
 
 
+
 type File = Node & {
   readonly sourceInstanceName: Scalars['String'];
   readonly absolutePath: Scalars['String'];
@@ -66,6 +67,7 @@ type File = Node & {
   readonly birthtime: Maybe<Scalars['Date']>;
   /** @deprecated Use `birthTime` instead */
   readonly birthtimeMs: Maybe<Scalars['Float']>;
+  readonly url: Maybe<Scalars['String']>;
   readonly blksize: Maybe<Scalars['Int']>;
   readonly blocks: Maybe<Scalars['Int']>;
   readonly fields: Maybe<FileFields>;
@@ -79,6 +81,10 @@ type File = Node & {
   readonly childrenMdx: Maybe<ReadonlyArray<Maybe<Mdx>>>;
   /** Returns the first child node of type Mdx or null if there are no children of given type on this node */
   readonly childMdx: Maybe<Mdx>;
+  /** Returns all children nodes filtered by type I18nRoute */
+  readonly childrenI18NRoute: Maybe<ReadonlyArray<Maybe<I18nRoute>>>;
+  /** Returns the first child node of type I18nRoute or null if there are no children of given type on this node */
+  readonly childI18NRoute: Maybe<I18nRoute>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
@@ -166,6 +172,7 @@ type FileFields = {
   readonly route: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly fileDir: Maybe<Scalars['String']>;
+  readonly url: Maybe<Scalars['String']>;
 };
 
 type Directory = Node & {
@@ -272,8 +279,6 @@ type Site = Node & {
   readonly port: Maybe<Scalars['Int']>;
   readonly host: Maybe<Scalars['String']>;
   readonly flags: Maybe<SiteFlags>;
-  readonly polyfill: Maybe<Scalars['Boolean']>;
-  readonly pathPrefix: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
@@ -305,15 +310,15 @@ type SitePage = Node & {
   readonly internalComponentName: Scalars['String'];
   readonly componentChunkName: Scalars['String'];
   readonly matchPath: Maybe<Scalars['String']>;
+  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
+  readonly pluginCreator: Maybe<SitePlugin>;
+  readonly pluginCreatorId: Maybe<Scalars['String']>;
+  readonly componentPath: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
   readonly children: ReadonlyArray<Node>;
   readonly internal: Internal;
-  readonly isCreatedByStatefulCreatePages: Maybe<Scalars['Boolean']>;
   readonly context: Maybe<SitePageContext>;
-  readonly pluginCreator: Maybe<SitePlugin>;
-  readonly pluginCreatorId: Maybe<Scalars['String']>;
-  readonly componentPath: Maybe<Scalars['String']>;
 };
 
 type SitePageContext = {
@@ -330,8 +335,8 @@ type SitePageContextI18n = {
 };
 
 type SitePageContextI18nMessages = {
-  readonly I18nSwitcher_en: Maybe<Scalars['String']>;
-  readonly I18nSwitcher_it: Maybe<Scalars['String']>;
+  readonly I18nSwitch_en: Maybe<Scalars['String']>;
+  readonly I18nSwitch_it: Maybe<Scalars['String']>;
   readonly UntranslatedTitle: Maybe<Scalars['String']>;
   readonly UntranslatedSubtitle: Maybe<Scalars['String']>;
   readonly UntranslatedText: Maybe<Scalars['String']>;
@@ -595,9 +600,9 @@ type I18n = Node & {
   readonly defaultLocale: Maybe<Scalars['String']>;
   readonly hideDefaultLocaleInUrl: Maybe<Scalars['Boolean']>;
   readonly debug: Maybe<Scalars['Boolean']>;
-  readonly pathConfig: Maybe<Scalars['String']>;
-  readonly pathMessages: Maybe<Scalars['String']>;
-  readonly pathContent: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly configPath: Maybe<Scalars['String']>;
+  readonly messagesPath: Maybe<Scalars['String']>;
+  readonly contentPaths: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly templateName: Maybe<Scalars['String']>;
   readonly untranslatedComponent: Maybe<Scalars['String']>;
   readonly useMdx: Maybe<Scalars['Boolean']>;
@@ -609,15 +614,71 @@ type I18n = Node & {
   readonly internal: Internal;
 };
 
+type Mdx = Node & {
+  readonly url: Maybe<Scalars['String']>;
+  readonly rawBody: Scalars['String'];
+  readonly fileAbsolutePath: Scalars['String'];
+  readonly frontmatter: Maybe<MdxFrontmatter>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly body: Scalars['String'];
+  readonly excerpt: Scalars['String'];
+  readonly headings: Maybe<ReadonlyArray<Maybe<MdxHeadingMdx>>>;
+  readonly html: Maybe<Scalars['String']>;
+  readonly mdxAST: Maybe<Scalars['JSON']>;
+  readonly tableOfContents: Maybe<Scalars['JSON']>;
+  readonly timeToRead: Maybe<Scalars['Int']>;
+  readonly wordCount: Maybe<MdxWordCount>;
+  readonly fields: Maybe<MdxFields>;
+  /** Returns all children nodes filtered by type I18nRoute */
+  readonly childrenI18NRoute: Maybe<ReadonlyArray<Maybe<I18nRoute>>>;
+  /** Returns the first child node of type I18nRoute or null if there are no children of given type on this node */
+  readonly childI18NRoute: Maybe<I18nRoute>;
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+  readonly urlString: Maybe<Scalars['String']>;
+  readonly urlRoute: Maybe<ReadonlyArray<Maybe<I18nRoute>>>;
+};
+
+
+type Mdx_excerptArgs = {
+  pruneLength?: Maybe<Scalars['Int']>;
+  truncate?: Maybe<Scalars['Boolean']>;
+};
+
+
+type Mdx_headingsArgs = {
+  depth: Maybe<HeadingsMdx>;
+};
+
+
+type Mdx_tableOfContentsArgs = {
+  maxDepth: Maybe<Scalars['Int']>;
+};
+
+
+type Mdx_urlStringArgs = {
+  locale: Maybe<Scalars['String']>;
+};
+
+type MdxFields = {
+  readonly locale: Maybe<Scalars['String']>;
+  readonly route: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
+  readonly fileDir: Maybe<Scalars['String']>;
+  readonly url: Maybe<Scalars['String']>;
+};
+
 type MdxFrontmatter = {
   readonly title: Scalars['String'];
-  readonly id: Maybe<Scalars['String']>;
   readonly template: Maybe<Scalars['String']>;
+  readonly id: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
-  readonly last_edit: Maybe<Scalars['Date']>;
-  readonly image: Maybe<Scalars['String']>;
   readonly seo: Maybe<MdxFrontmatterSeo>;
+  readonly last_edit: Maybe<Scalars['Date']>;
   readonly cover: Maybe<MdxFrontmatterCover>;
+  readonly image: Maybe<Scalars['String']>;
 };
 
 
@@ -656,49 +717,6 @@ type MdxWordCount = {
   readonly words: Maybe<Scalars['Int']>;
 };
 
-type Mdx = Node & {
-  readonly rawBody: Scalars['String'];
-  readonly fileAbsolutePath: Scalars['String'];
-  readonly frontmatter: Maybe<MdxFrontmatter>;
-  readonly slug: Maybe<Scalars['String']>;
-  readonly body: Scalars['String'];
-  readonly excerpt: Scalars['String'];
-  readonly headings: Maybe<ReadonlyArray<Maybe<MdxHeadingMdx>>>;
-  readonly html: Maybe<Scalars['String']>;
-  readonly mdxAST: Maybe<Scalars['JSON']>;
-  readonly tableOfContents: Maybe<Scalars['JSON']>;
-  readonly timeToRead: Maybe<Scalars['Int']>;
-  readonly wordCount: Maybe<MdxWordCount>;
-  readonly fields: Maybe<MdxFields>;
-  readonly id: Scalars['ID'];
-  readonly parent: Maybe<Node>;
-  readonly children: ReadonlyArray<Node>;
-  readonly internal: Internal;
-};
-
-
-type Mdx_excerptArgs = {
-  pruneLength?: Maybe<Scalars['Int']>;
-  truncate?: Maybe<Scalars['Boolean']>;
-};
-
-
-type Mdx_headingsArgs = {
-  depth: Maybe<HeadingsMdx>;
-};
-
-
-type Mdx_tableOfContentsArgs = {
-  maxDepth: Maybe<Scalars['Int']>;
-};
-
-type MdxFields = {
-  readonly locale: Maybe<Scalars['String']>;
-  readonly route: Maybe<Scalars['String']>;
-  readonly slug: Maybe<Scalars['String']>;
-  readonly fileDir: Maybe<Scalars['String']>;
-};
-
 type I18nRoute = Node & {
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
@@ -709,8 +727,8 @@ type I18nRoute = Node & {
 };
 
 type I18nRouteFields = {
-  readonly en: Maybe<Scalars['String']>;
   readonly it: Maybe<Scalars['String']>;
+  readonly en: Maybe<Scalars['String']>;
 };
 
 type SiteBuildMetadata = Node & {
@@ -854,6 +872,7 @@ type Query_fileArgs = {
   ctime: Maybe<DateQueryOperatorInput>;
   birthtime: Maybe<DateQueryOperatorInput>;
   birthtimeMs: Maybe<FloatQueryOperatorInput>;
+  url: Maybe<StringQueryOperatorInput>;
   blksize: Maybe<IntQueryOperatorInput>;
   blocks: Maybe<IntQueryOperatorInput>;
   fields: Maybe<FileFieldsFilterInput>;
@@ -862,6 +881,8 @@ type Query_fileArgs = {
   childImageSharp: Maybe<ImageSharpFilterInput>;
   childrenMdx: Maybe<MdxFilterListInput>;
   childMdx: Maybe<MdxFilterInput>;
+  childrenI18NRoute: Maybe<I18nRouteFilterListInput>;
+  childI18NRoute: Maybe<I18nRouteFilterInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -932,8 +953,6 @@ type Query_siteArgs = {
   port: Maybe<IntQueryOperatorInput>;
   host: Maybe<StringQueryOperatorInput>;
   flags: Maybe<SiteFlagsFilterInput>;
-  polyfill: Maybe<BooleanQueryOperatorInput>;
-  pathPrefix: Maybe<StringQueryOperatorInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -955,15 +974,15 @@ type Query_sitePageArgs = {
   internalComponentName: Maybe<StringQueryOperatorInput>;
   componentChunkName: Maybe<StringQueryOperatorInput>;
   matchPath: Maybe<StringQueryOperatorInput>;
-  id: Maybe<StringQueryOperatorInput>;
-  parent: Maybe<NodeFilterInput>;
-  children: Maybe<NodeFilterListInput>;
-  internal: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   context: Maybe<SitePageContextFilterInput>;
   pluginCreator: Maybe<SitePluginFilterInput>;
   pluginCreatorId: Maybe<StringQueryOperatorInput>;
   componentPath: Maybe<StringQueryOperatorInput>;
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
 };
 
 
@@ -1001,9 +1020,9 @@ type Query_i18NArgs = {
   defaultLocale: Maybe<StringQueryOperatorInput>;
   hideDefaultLocaleInUrl: Maybe<BooleanQueryOperatorInput>;
   debug: Maybe<BooleanQueryOperatorInput>;
-  pathConfig: Maybe<StringQueryOperatorInput>;
-  pathMessages: Maybe<StringQueryOperatorInput>;
-  pathContent: Maybe<StringQueryOperatorInput>;
+  configPath: Maybe<StringQueryOperatorInput>;
+  messagesPath: Maybe<StringQueryOperatorInput>;
+  contentPaths: Maybe<StringQueryOperatorInput>;
   templateName: Maybe<StringQueryOperatorInput>;
   untranslatedComponent: Maybe<StringQueryOperatorInput>;
   useMdx: Maybe<BooleanQueryOperatorInput>;
@@ -1025,6 +1044,7 @@ type Query_allI18NArgs = {
 
 
 type Query_mdxArgs = {
+  url: Maybe<StringQueryOperatorInput>;
   rawBody: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath: Maybe<StringQueryOperatorInput>;
   frontmatter: Maybe<MdxFrontmatterFilterInput>;
@@ -1038,6 +1058,8 @@ type Query_mdxArgs = {
   timeToRead: Maybe<IntQueryOperatorInput>;
   wordCount: Maybe<MdxWordCountFilterInput>;
   fields: Maybe<MdxFieldsFilterInput>;
+  childrenI18NRoute: Maybe<I18nRouteFilterListInput>;
+  childI18NRoute: Maybe<I18nRouteFilterInput>;
   id: Maybe<StringQueryOperatorInput>;
   parent: Maybe<NodeFilterInput>;
   children: Maybe<NodeFilterListInput>;
@@ -1159,6 +1181,7 @@ type FileFieldsFilterInput = {
   readonly route: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly fileDir: Maybe<StringQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
 };
 
 type ImageSharpFilterListInput = {
@@ -1263,6 +1286,7 @@ type MdxFilterListInput = {
 };
 
 type MdxFilterInput = {
+  readonly url: Maybe<StringQueryOperatorInput>;
   readonly rawBody: Maybe<StringQueryOperatorInput>;
   readonly fileAbsolutePath: Maybe<StringQueryOperatorInput>;
   readonly frontmatter: Maybe<MdxFrontmatterFilterInput>;
@@ -1276,6 +1300,8 @@ type MdxFilterInput = {
   readonly timeToRead: Maybe<IntQueryOperatorInput>;
   readonly wordCount: Maybe<MdxWordCountFilterInput>;
   readonly fields: Maybe<MdxFieldsFilterInput>;
+  readonly childrenI18NRoute: Maybe<I18nRouteFilterListInput>;
+  readonly childI18NRoute: Maybe<I18nRouteFilterInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -1284,13 +1310,13 @@ type MdxFilterInput = {
 
 type MdxFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
   readonly template: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
-  readonly last_edit: Maybe<DateQueryOperatorInput>;
-  readonly image: Maybe<StringQueryOperatorInput>;
   readonly seo: Maybe<MdxFrontmatterSeoFilterInput>;
+  readonly last_edit: Maybe<DateQueryOperatorInput>;
   readonly cover: Maybe<MdxFrontmatterCoverFilterInput>;
+  readonly image: Maybe<StringQueryOperatorInput>;
 };
 
 type MdxFrontmatterSeoFilterInput = {
@@ -1322,6 +1348,25 @@ type MdxFieldsFilterInput = {
   readonly route: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
   readonly fileDir: Maybe<StringQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
+};
+
+type I18nRouteFilterListInput = {
+  readonly elemMatch: Maybe<I18nRouteFilterInput>;
+};
+
+type I18nRouteFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+  readonly routeId: Maybe<StringQueryOperatorInput>;
+  readonly fields: Maybe<I18nRouteFieldsFilterInput>;
+};
+
+type I18nRouteFieldsFilterInput = {
+  readonly it: Maybe<StringQueryOperatorInput>;
+  readonly en: Maybe<StringQueryOperatorInput>;
 };
 
 type FileConnection = {
@@ -1393,12 +1438,14 @@ type FileFieldsEnum =
   | 'ctime'
   | 'birthtime'
   | 'birthtimeMs'
+  | 'url'
   | 'blksize'
   | 'blocks'
   | 'fields.locale'
   | 'fields.route'
   | 'fields.slug'
   | 'fields.fileDir'
+  | 'fields.url'
   | 'publicURL'
   | 'childrenImageSharp'
   | 'childrenImageSharp.fixed.base64'
@@ -1542,17 +1589,18 @@ type FileFieldsEnum =
   | 'childImageSharp.internal.owner'
   | 'childImageSharp.internal.type'
   | 'childrenMdx'
+  | 'childrenMdx.url'
   | 'childrenMdx.rawBody'
   | 'childrenMdx.fileAbsolutePath'
   | 'childrenMdx.frontmatter.title'
-  | 'childrenMdx.frontmatter.id'
   | 'childrenMdx.frontmatter.template'
+  | 'childrenMdx.frontmatter.id'
   | 'childrenMdx.frontmatter.slug'
-  | 'childrenMdx.frontmatter.last_edit'
-  | 'childrenMdx.frontmatter.image'
   | 'childrenMdx.frontmatter.seo.isExcludedFromSitemap'
+  | 'childrenMdx.frontmatter.last_edit'
   | 'childrenMdx.frontmatter.cover.caption'
   | 'childrenMdx.frontmatter.cover.image'
+  | 'childrenMdx.frontmatter.image'
   | 'childrenMdx.slug'
   | 'childrenMdx.body'
   | 'childrenMdx.excerpt'
@@ -1570,6 +1618,42 @@ type FileFieldsEnum =
   | 'childrenMdx.fields.route'
   | 'childrenMdx.fields.slug'
   | 'childrenMdx.fields.fileDir'
+  | 'childrenMdx.fields.url'
+  | 'childrenMdx.childrenI18NRoute'
+  | 'childrenMdx.childrenI18NRoute.id'
+  | 'childrenMdx.childrenI18NRoute.parent.id'
+  | 'childrenMdx.childrenI18NRoute.parent.children'
+  | 'childrenMdx.childrenI18NRoute.children'
+  | 'childrenMdx.childrenI18NRoute.children.id'
+  | 'childrenMdx.childrenI18NRoute.children.children'
+  | 'childrenMdx.childrenI18NRoute.internal.content'
+  | 'childrenMdx.childrenI18NRoute.internal.contentDigest'
+  | 'childrenMdx.childrenI18NRoute.internal.description'
+  | 'childrenMdx.childrenI18NRoute.internal.fieldOwners'
+  | 'childrenMdx.childrenI18NRoute.internal.ignoreType'
+  | 'childrenMdx.childrenI18NRoute.internal.mediaType'
+  | 'childrenMdx.childrenI18NRoute.internal.owner'
+  | 'childrenMdx.childrenI18NRoute.internal.type'
+  | 'childrenMdx.childrenI18NRoute.routeId'
+  | 'childrenMdx.childrenI18NRoute.fields.it'
+  | 'childrenMdx.childrenI18NRoute.fields.en'
+  | 'childrenMdx.childI18NRoute.id'
+  | 'childrenMdx.childI18NRoute.parent.id'
+  | 'childrenMdx.childI18NRoute.parent.children'
+  | 'childrenMdx.childI18NRoute.children'
+  | 'childrenMdx.childI18NRoute.children.id'
+  | 'childrenMdx.childI18NRoute.children.children'
+  | 'childrenMdx.childI18NRoute.internal.content'
+  | 'childrenMdx.childI18NRoute.internal.contentDigest'
+  | 'childrenMdx.childI18NRoute.internal.description'
+  | 'childrenMdx.childI18NRoute.internal.fieldOwners'
+  | 'childrenMdx.childI18NRoute.internal.ignoreType'
+  | 'childrenMdx.childI18NRoute.internal.mediaType'
+  | 'childrenMdx.childI18NRoute.internal.owner'
+  | 'childrenMdx.childI18NRoute.internal.type'
+  | 'childrenMdx.childI18NRoute.routeId'
+  | 'childrenMdx.childI18NRoute.fields.it'
+  | 'childrenMdx.childI18NRoute.fields.en'
   | 'childrenMdx.id'
   | 'childrenMdx.parent.id'
   | 'childrenMdx.parent.parent.id'
@@ -1608,17 +1692,18 @@ type FileFieldsEnum =
   | 'childrenMdx.internal.mediaType'
   | 'childrenMdx.internal.owner'
   | 'childrenMdx.internal.type'
+  | 'childMdx.url'
   | 'childMdx.rawBody'
   | 'childMdx.fileAbsolutePath'
   | 'childMdx.frontmatter.title'
-  | 'childMdx.frontmatter.id'
   | 'childMdx.frontmatter.template'
+  | 'childMdx.frontmatter.id'
   | 'childMdx.frontmatter.slug'
-  | 'childMdx.frontmatter.last_edit'
-  | 'childMdx.frontmatter.image'
   | 'childMdx.frontmatter.seo.isExcludedFromSitemap'
+  | 'childMdx.frontmatter.last_edit'
   | 'childMdx.frontmatter.cover.caption'
   | 'childMdx.frontmatter.cover.image'
+  | 'childMdx.frontmatter.image'
   | 'childMdx.slug'
   | 'childMdx.body'
   | 'childMdx.excerpt'
@@ -1636,6 +1721,42 @@ type FileFieldsEnum =
   | 'childMdx.fields.route'
   | 'childMdx.fields.slug'
   | 'childMdx.fields.fileDir'
+  | 'childMdx.fields.url'
+  | 'childMdx.childrenI18NRoute'
+  | 'childMdx.childrenI18NRoute.id'
+  | 'childMdx.childrenI18NRoute.parent.id'
+  | 'childMdx.childrenI18NRoute.parent.children'
+  | 'childMdx.childrenI18NRoute.children'
+  | 'childMdx.childrenI18NRoute.children.id'
+  | 'childMdx.childrenI18NRoute.children.children'
+  | 'childMdx.childrenI18NRoute.internal.content'
+  | 'childMdx.childrenI18NRoute.internal.contentDigest'
+  | 'childMdx.childrenI18NRoute.internal.description'
+  | 'childMdx.childrenI18NRoute.internal.fieldOwners'
+  | 'childMdx.childrenI18NRoute.internal.ignoreType'
+  | 'childMdx.childrenI18NRoute.internal.mediaType'
+  | 'childMdx.childrenI18NRoute.internal.owner'
+  | 'childMdx.childrenI18NRoute.internal.type'
+  | 'childMdx.childrenI18NRoute.routeId'
+  | 'childMdx.childrenI18NRoute.fields.it'
+  | 'childMdx.childrenI18NRoute.fields.en'
+  | 'childMdx.childI18NRoute.id'
+  | 'childMdx.childI18NRoute.parent.id'
+  | 'childMdx.childI18NRoute.parent.children'
+  | 'childMdx.childI18NRoute.children'
+  | 'childMdx.childI18NRoute.children.id'
+  | 'childMdx.childI18NRoute.children.children'
+  | 'childMdx.childI18NRoute.internal.content'
+  | 'childMdx.childI18NRoute.internal.contentDigest'
+  | 'childMdx.childI18NRoute.internal.description'
+  | 'childMdx.childI18NRoute.internal.fieldOwners'
+  | 'childMdx.childI18NRoute.internal.ignoreType'
+  | 'childMdx.childI18NRoute.internal.mediaType'
+  | 'childMdx.childI18NRoute.internal.owner'
+  | 'childMdx.childI18NRoute.internal.type'
+  | 'childMdx.childI18NRoute.routeId'
+  | 'childMdx.childI18NRoute.fields.it'
+  | 'childMdx.childI18NRoute.fields.en'
   | 'childMdx.id'
   | 'childMdx.parent.id'
   | 'childMdx.parent.parent.id'
@@ -1674,6 +1795,89 @@ type FileFieldsEnum =
   | 'childMdx.internal.mediaType'
   | 'childMdx.internal.owner'
   | 'childMdx.internal.type'
+  | 'childrenI18NRoute'
+  | 'childrenI18NRoute.id'
+  | 'childrenI18NRoute.parent.id'
+  | 'childrenI18NRoute.parent.parent.id'
+  | 'childrenI18NRoute.parent.parent.children'
+  | 'childrenI18NRoute.parent.children'
+  | 'childrenI18NRoute.parent.children.id'
+  | 'childrenI18NRoute.parent.children.children'
+  | 'childrenI18NRoute.parent.internal.content'
+  | 'childrenI18NRoute.parent.internal.contentDigest'
+  | 'childrenI18NRoute.parent.internal.description'
+  | 'childrenI18NRoute.parent.internal.fieldOwners'
+  | 'childrenI18NRoute.parent.internal.ignoreType'
+  | 'childrenI18NRoute.parent.internal.mediaType'
+  | 'childrenI18NRoute.parent.internal.owner'
+  | 'childrenI18NRoute.parent.internal.type'
+  | 'childrenI18NRoute.children'
+  | 'childrenI18NRoute.children.id'
+  | 'childrenI18NRoute.children.parent.id'
+  | 'childrenI18NRoute.children.parent.children'
+  | 'childrenI18NRoute.children.children'
+  | 'childrenI18NRoute.children.children.id'
+  | 'childrenI18NRoute.children.children.children'
+  | 'childrenI18NRoute.children.internal.content'
+  | 'childrenI18NRoute.children.internal.contentDigest'
+  | 'childrenI18NRoute.children.internal.description'
+  | 'childrenI18NRoute.children.internal.fieldOwners'
+  | 'childrenI18NRoute.children.internal.ignoreType'
+  | 'childrenI18NRoute.children.internal.mediaType'
+  | 'childrenI18NRoute.children.internal.owner'
+  | 'childrenI18NRoute.children.internal.type'
+  | 'childrenI18NRoute.internal.content'
+  | 'childrenI18NRoute.internal.contentDigest'
+  | 'childrenI18NRoute.internal.description'
+  | 'childrenI18NRoute.internal.fieldOwners'
+  | 'childrenI18NRoute.internal.ignoreType'
+  | 'childrenI18NRoute.internal.mediaType'
+  | 'childrenI18NRoute.internal.owner'
+  | 'childrenI18NRoute.internal.type'
+  | 'childrenI18NRoute.routeId'
+  | 'childrenI18NRoute.fields.it'
+  | 'childrenI18NRoute.fields.en'
+  | 'childI18NRoute.id'
+  | 'childI18NRoute.parent.id'
+  | 'childI18NRoute.parent.parent.id'
+  | 'childI18NRoute.parent.parent.children'
+  | 'childI18NRoute.parent.children'
+  | 'childI18NRoute.parent.children.id'
+  | 'childI18NRoute.parent.children.children'
+  | 'childI18NRoute.parent.internal.content'
+  | 'childI18NRoute.parent.internal.contentDigest'
+  | 'childI18NRoute.parent.internal.description'
+  | 'childI18NRoute.parent.internal.fieldOwners'
+  | 'childI18NRoute.parent.internal.ignoreType'
+  | 'childI18NRoute.parent.internal.mediaType'
+  | 'childI18NRoute.parent.internal.owner'
+  | 'childI18NRoute.parent.internal.type'
+  | 'childI18NRoute.children'
+  | 'childI18NRoute.children.id'
+  | 'childI18NRoute.children.parent.id'
+  | 'childI18NRoute.children.parent.children'
+  | 'childI18NRoute.children.children'
+  | 'childI18NRoute.children.children.id'
+  | 'childI18NRoute.children.children.children'
+  | 'childI18NRoute.children.internal.content'
+  | 'childI18NRoute.children.internal.contentDigest'
+  | 'childI18NRoute.children.internal.description'
+  | 'childI18NRoute.children.internal.fieldOwners'
+  | 'childI18NRoute.children.internal.ignoreType'
+  | 'childI18NRoute.children.internal.mediaType'
+  | 'childI18NRoute.children.internal.owner'
+  | 'childI18NRoute.children.internal.type'
+  | 'childI18NRoute.internal.content'
+  | 'childI18NRoute.internal.contentDigest'
+  | 'childI18NRoute.internal.description'
+  | 'childI18NRoute.internal.fieldOwners'
+  | 'childI18NRoute.internal.ignoreType'
+  | 'childI18NRoute.internal.mediaType'
+  | 'childI18NRoute.internal.owner'
+  | 'childI18NRoute.internal.type'
+  | 'childI18NRoute.routeId'
+  | 'childI18NRoute.fields.it'
+  | 'childI18NRoute.fields.en'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -1802,6 +2006,7 @@ type FileFilterInput = {
   readonly ctime: Maybe<DateQueryOperatorInput>;
   readonly birthtime: Maybe<DateQueryOperatorInput>;
   readonly birthtimeMs: Maybe<FloatQueryOperatorInput>;
+  readonly url: Maybe<StringQueryOperatorInput>;
   readonly blksize: Maybe<IntQueryOperatorInput>;
   readonly blocks: Maybe<IntQueryOperatorInput>;
   readonly fields: Maybe<FileFieldsFilterInput>;
@@ -1810,6 +2015,8 @@ type FileFilterInput = {
   readonly childImageSharp: Maybe<ImageSharpFilterInput>;
   readonly childrenMdx: Maybe<MdxFilterListInput>;
   readonly childMdx: Maybe<MdxFilterInput>;
+  readonly childrenI18NRoute: Maybe<I18nRouteFilterListInput>;
+  readonly childI18NRoute: Maybe<I18nRouteFilterInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -2074,8 +2281,6 @@ type SiteFieldsEnum =
   | 'host'
   | 'flags.FAST_DEV'
   | 'flags.PRESERVE_WEBPACK_CACHE'
-  | 'polyfill'
-  | 'pathPrefix'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -2178,8 +2383,6 @@ type SiteFilterInput = {
   readonly port: Maybe<IntQueryOperatorInput>;
   readonly host: Maybe<StringQueryOperatorInput>;
   readonly flags: Maybe<SiteFlagsFilterInput>;
-  readonly polyfill: Maybe<BooleanQueryOperatorInput>;
-  readonly pathPrefix: Maybe<StringQueryOperatorInput>;
   readonly id: Maybe<StringQueryOperatorInput>;
   readonly parent: Maybe<NodeFilterInput>;
   readonly children: Maybe<NodeFilterListInput>;
@@ -2205,8 +2408,8 @@ type SitePageContextI18nFilterInput = {
 };
 
 type SitePageContextI18nMessagesFilterInput = {
-  readonly I18nSwitcher_en: Maybe<StringQueryOperatorInput>;
-  readonly I18nSwitcher_it: Maybe<StringQueryOperatorInput>;
+  readonly I18nSwitch_en: Maybe<StringQueryOperatorInput>;
+  readonly I18nSwitch_it: Maybe<StringQueryOperatorInput>;
   readonly UntranslatedTitle: Maybe<StringQueryOperatorInput>;
   readonly UntranslatedSubtitle: Maybe<StringQueryOperatorInput>;
   readonly UntranslatedText: Maybe<StringQueryOperatorInput>;
@@ -2329,100 +2532,14 @@ type SitePageFieldsEnum =
   | 'internalComponentName'
   | 'componentChunkName'
   | 'matchPath'
-  | 'id'
-  | 'parent.id'
-  | 'parent.parent.id'
-  | 'parent.parent.parent.id'
-  | 'parent.parent.parent.children'
-  | 'parent.parent.children'
-  | 'parent.parent.children.id'
-  | 'parent.parent.children.children'
-  | 'parent.parent.internal.content'
-  | 'parent.parent.internal.contentDigest'
-  | 'parent.parent.internal.description'
-  | 'parent.parent.internal.fieldOwners'
-  | 'parent.parent.internal.ignoreType'
-  | 'parent.parent.internal.mediaType'
-  | 'parent.parent.internal.owner'
-  | 'parent.parent.internal.type'
-  | 'parent.children'
-  | 'parent.children.id'
-  | 'parent.children.parent.id'
-  | 'parent.children.parent.children'
-  | 'parent.children.children'
-  | 'parent.children.children.id'
-  | 'parent.children.children.children'
-  | 'parent.children.internal.content'
-  | 'parent.children.internal.contentDigest'
-  | 'parent.children.internal.description'
-  | 'parent.children.internal.fieldOwners'
-  | 'parent.children.internal.ignoreType'
-  | 'parent.children.internal.mediaType'
-  | 'parent.children.internal.owner'
-  | 'parent.children.internal.type'
-  | 'parent.internal.content'
-  | 'parent.internal.contentDigest'
-  | 'parent.internal.description'
-  | 'parent.internal.fieldOwners'
-  | 'parent.internal.ignoreType'
-  | 'parent.internal.mediaType'
-  | 'parent.internal.owner'
-  | 'parent.internal.type'
-  | 'children'
-  | 'children.id'
-  | 'children.parent.id'
-  | 'children.parent.parent.id'
-  | 'children.parent.parent.children'
-  | 'children.parent.children'
-  | 'children.parent.children.id'
-  | 'children.parent.children.children'
-  | 'children.parent.internal.content'
-  | 'children.parent.internal.contentDigest'
-  | 'children.parent.internal.description'
-  | 'children.parent.internal.fieldOwners'
-  | 'children.parent.internal.ignoreType'
-  | 'children.parent.internal.mediaType'
-  | 'children.parent.internal.owner'
-  | 'children.parent.internal.type'
-  | 'children.children'
-  | 'children.children.id'
-  | 'children.children.parent.id'
-  | 'children.children.parent.children'
-  | 'children.children.children'
-  | 'children.children.children.id'
-  | 'children.children.children.children'
-  | 'children.children.internal.content'
-  | 'children.children.internal.contentDigest'
-  | 'children.children.internal.description'
-  | 'children.children.internal.fieldOwners'
-  | 'children.children.internal.ignoreType'
-  | 'children.children.internal.mediaType'
-  | 'children.children.internal.owner'
-  | 'children.children.internal.type'
-  | 'children.internal.content'
-  | 'children.internal.contentDigest'
-  | 'children.internal.description'
-  | 'children.internal.fieldOwners'
-  | 'children.internal.ignoreType'
-  | 'children.internal.mediaType'
-  | 'children.internal.owner'
-  | 'children.internal.type'
-  | 'internal.content'
-  | 'internal.contentDigest'
-  | 'internal.description'
-  | 'internal.fieldOwners'
-  | 'internal.ignoreType'
-  | 'internal.mediaType'
-  | 'internal.owner'
-  | 'internal.type'
   | 'isCreatedByStatefulCreatePages'
   | 'context.id'
   | 'context.locale'
   | 'context.i18n.locales'
   | 'context.i18n.defaultLocale'
   | 'context.i18n.currentLocale'
-  | 'context.i18n.messages.I18nSwitcher_en'
-  | 'context.i18n.messages.I18nSwitcher_it'
+  | 'context.i18n.messages.I18nSwitch_en'
+  | 'context.i18n.messages.I18nSwitch_it'
   | 'context.i18n.messages.UntranslatedTitle'
   | 'context.i18n.messages.UntranslatedSubtitle'
   | 'context.i18n.messages.UntranslatedText'
@@ -2513,7 +2630,93 @@ type SitePageFieldsEnum =
   | 'pluginCreator.packageJson.peerDependencies.version'
   | 'pluginCreator.packageJson.keywords'
   | 'pluginCreatorId'
-  | 'componentPath';
+  | 'componentPath'
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type';
 
 type SitePageGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -2530,15 +2733,15 @@ type SitePageFilterInput = {
   readonly internalComponentName: Maybe<StringQueryOperatorInput>;
   readonly componentChunkName: Maybe<StringQueryOperatorInput>;
   readonly matchPath: Maybe<StringQueryOperatorInput>;
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
   readonly isCreatedByStatefulCreatePages: Maybe<BooleanQueryOperatorInput>;
   readonly context: Maybe<SitePageContextFilterInput>;
   readonly pluginCreator: Maybe<SitePluginFilterInput>;
   readonly pluginCreatorId: Maybe<StringQueryOperatorInput>;
   readonly componentPath: Maybe<StringQueryOperatorInput>;
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
 };
 
 type SitePageSortInput = {
@@ -2739,9 +2942,9 @@ type I18nFieldsEnum =
   | 'defaultLocale'
   | 'hideDefaultLocaleInUrl'
   | 'debug'
-  | 'pathConfig'
-  | 'pathMessages'
-  | 'pathContent'
+  | 'configPath'
+  | 'messagesPath'
+  | 'contentPaths'
   | 'templateName'
   | 'untranslatedComponent'
   | 'useMdx'
@@ -2848,9 +3051,9 @@ type I18nFilterInput = {
   readonly defaultLocale: Maybe<StringQueryOperatorInput>;
   readonly hideDefaultLocaleInUrl: Maybe<BooleanQueryOperatorInput>;
   readonly debug: Maybe<BooleanQueryOperatorInput>;
-  readonly pathConfig: Maybe<StringQueryOperatorInput>;
-  readonly pathMessages: Maybe<StringQueryOperatorInput>;
-  readonly pathContent: Maybe<StringQueryOperatorInput>;
+  readonly configPath: Maybe<StringQueryOperatorInput>;
+  readonly messagesPath: Maybe<StringQueryOperatorInput>;
+  readonly contentPaths: Maybe<StringQueryOperatorInput>;
   readonly templateName: Maybe<StringQueryOperatorInput>;
   readonly untranslatedComponent: Maybe<StringQueryOperatorInput>;
   readonly useMdx: Maybe<BooleanQueryOperatorInput>;
@@ -2895,17 +3098,18 @@ type MdxEdge = {
 };
 
 type MdxFieldsEnum =
+  | 'url'
   | 'rawBody'
   | 'fileAbsolutePath'
   | 'frontmatter.title'
-  | 'frontmatter.id'
   | 'frontmatter.template'
+  | 'frontmatter.id'
   | 'frontmatter.slug'
-  | 'frontmatter.last_edit'
-  | 'frontmatter.image'
   | 'frontmatter.seo.isExcludedFromSitemap'
+  | 'frontmatter.last_edit'
   | 'frontmatter.cover.caption'
   | 'frontmatter.cover.image'
+  | 'frontmatter.image'
   | 'slug'
   | 'body'
   | 'excerpt'
@@ -2923,6 +3127,90 @@ type MdxFieldsEnum =
   | 'fields.route'
   | 'fields.slug'
   | 'fields.fileDir'
+  | 'fields.url'
+  | 'childrenI18NRoute'
+  | 'childrenI18NRoute.id'
+  | 'childrenI18NRoute.parent.id'
+  | 'childrenI18NRoute.parent.parent.id'
+  | 'childrenI18NRoute.parent.parent.children'
+  | 'childrenI18NRoute.parent.children'
+  | 'childrenI18NRoute.parent.children.id'
+  | 'childrenI18NRoute.parent.children.children'
+  | 'childrenI18NRoute.parent.internal.content'
+  | 'childrenI18NRoute.parent.internal.contentDigest'
+  | 'childrenI18NRoute.parent.internal.description'
+  | 'childrenI18NRoute.parent.internal.fieldOwners'
+  | 'childrenI18NRoute.parent.internal.ignoreType'
+  | 'childrenI18NRoute.parent.internal.mediaType'
+  | 'childrenI18NRoute.parent.internal.owner'
+  | 'childrenI18NRoute.parent.internal.type'
+  | 'childrenI18NRoute.children'
+  | 'childrenI18NRoute.children.id'
+  | 'childrenI18NRoute.children.parent.id'
+  | 'childrenI18NRoute.children.parent.children'
+  | 'childrenI18NRoute.children.children'
+  | 'childrenI18NRoute.children.children.id'
+  | 'childrenI18NRoute.children.children.children'
+  | 'childrenI18NRoute.children.internal.content'
+  | 'childrenI18NRoute.children.internal.contentDigest'
+  | 'childrenI18NRoute.children.internal.description'
+  | 'childrenI18NRoute.children.internal.fieldOwners'
+  | 'childrenI18NRoute.children.internal.ignoreType'
+  | 'childrenI18NRoute.children.internal.mediaType'
+  | 'childrenI18NRoute.children.internal.owner'
+  | 'childrenI18NRoute.children.internal.type'
+  | 'childrenI18NRoute.internal.content'
+  | 'childrenI18NRoute.internal.contentDigest'
+  | 'childrenI18NRoute.internal.description'
+  | 'childrenI18NRoute.internal.fieldOwners'
+  | 'childrenI18NRoute.internal.ignoreType'
+  | 'childrenI18NRoute.internal.mediaType'
+  | 'childrenI18NRoute.internal.owner'
+  | 'childrenI18NRoute.internal.type'
+  | 'childrenI18NRoute.routeId'
+  | 'childrenI18NRoute.fields.it'
+  | 'childrenI18NRoute.fields.en'
+  | 'childI18NRoute.id'
+  | 'childI18NRoute.parent.id'
+  | 'childI18NRoute.parent.parent.id'
+  | 'childI18NRoute.parent.parent.children'
+  | 'childI18NRoute.parent.children'
+  | 'childI18NRoute.parent.children.id'
+  | 'childI18NRoute.parent.children.children'
+  | 'childI18NRoute.parent.internal.content'
+  | 'childI18NRoute.parent.internal.contentDigest'
+  | 'childI18NRoute.parent.internal.description'
+  | 'childI18NRoute.parent.internal.fieldOwners'
+  | 'childI18NRoute.parent.internal.ignoreType'
+  | 'childI18NRoute.parent.internal.mediaType'
+  | 'childI18NRoute.parent.internal.owner'
+  | 'childI18NRoute.parent.internal.type'
+  | 'childI18NRoute.children'
+  | 'childI18NRoute.children.id'
+  | 'childI18NRoute.children.parent.id'
+  | 'childI18NRoute.children.parent.children'
+  | 'childI18NRoute.children.children'
+  | 'childI18NRoute.children.children.id'
+  | 'childI18NRoute.children.children.children'
+  | 'childI18NRoute.children.internal.content'
+  | 'childI18NRoute.children.internal.contentDigest'
+  | 'childI18NRoute.children.internal.description'
+  | 'childI18NRoute.children.internal.fieldOwners'
+  | 'childI18NRoute.children.internal.ignoreType'
+  | 'childI18NRoute.children.internal.mediaType'
+  | 'childI18NRoute.children.internal.owner'
+  | 'childI18NRoute.children.internal.type'
+  | 'childI18NRoute.internal.content'
+  | 'childI18NRoute.internal.contentDigest'
+  | 'childI18NRoute.internal.description'
+  | 'childI18NRoute.internal.fieldOwners'
+  | 'childI18NRoute.internal.ignoreType'
+  | 'childI18NRoute.internal.mediaType'
+  | 'childI18NRoute.internal.owner'
+  | 'childI18NRoute.internal.type'
+  | 'childI18NRoute.routeId'
+  | 'childI18NRoute.fields.it'
+  | 'childI18NRoute.fields.en'
   | 'id'
   | 'parent.id'
   | 'parent.parent.id'
@@ -3022,11 +3310,6 @@ type MdxGroupConnection = {
 type MdxSortInput = {
   readonly fields: Maybe<ReadonlyArray<Maybe<MdxFieldsEnum>>>;
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
-};
-
-type I18nRouteFieldsFilterInput = {
-  readonly en: Maybe<StringQueryOperatorInput>;
-  readonly it: Maybe<StringQueryOperatorInput>;
 };
 
 type I18nRouteConnection = {
@@ -3144,8 +3427,8 @@ type I18nRouteFieldsEnum =
   | 'internal.owner'
   | 'internal.type'
   | 'routeId'
-  | 'fields.en'
-  | 'fields.it';
+  | 'fields.it'
+  | 'fields.en';
 
 type I18nRouteGroupConnection = {
   readonly totalCount: Scalars['Int'];
@@ -3154,15 +3437,6 @@ type I18nRouteGroupConnection = {
   readonly pageInfo: PageInfo;
   readonly field: Scalars['String'];
   readonly fieldValue: Maybe<Scalars['String']>;
-};
-
-type I18nRouteFilterInput = {
-  readonly id: Maybe<StringQueryOperatorInput>;
-  readonly parent: Maybe<NodeFilterInput>;
-  readonly children: Maybe<NodeFilterListInput>;
-  readonly internal: Maybe<InternalFilterInput>;
-  readonly routeId: Maybe<StringQueryOperatorInput>;
-  readonly fields: Maybe<I18nRouteFieldsFilterInput>;
 };
 
 type I18nRouteSortInput = {
@@ -3491,10 +3765,10 @@ type TemplateDefaultQueryVariables = Exact<{
 type TemplateDefaultQuery = { readonly node: Maybe<(
     Pick<Mdx, 'body'>
     & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
-  )>, readonly allMdx: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<Mdx, 'id'>
-        & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>>, readonly fields: Maybe<Pick<MdxFields, 'route'>> }
-      ) }> } };
+  )>, readonly allMdx: { readonly nodes: ReadonlyArray<(
+      Pick<Mdx, 'id' | 'url'>
+      & { readonly frontmatter: Maybe<Pick<MdxFrontmatter, 'title'>> }
+    )> } };
 
 type TemplatePagesAboutQueryVariables = Exact<{
   id: Scalars['String'];
@@ -3516,15 +3790,23 @@ type PageAdminQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PageAdminQuery = { readonly templates: { readonly edges: ReadonlyArray<{ readonly node: Pick<File, 'name' | 'relativePath'> }> }, readonly pages: { readonly edges: ReadonlyArray<{ readonly node: { localisedUrlPath: SitePage['path'] } }> }, readonly meta: Maybe<Pick<Site, 'buildTime'>> };
 
-type PageTestQueryQueryVariables = Exact<{ [key: string]: never; }>;
+type PagesTestQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type PageTestQueryQuery = { readonly allSitePlugin: { readonly edges: ReadonlyArray<{ readonly node: Pick<SitePlugin, 'name' | 'version'> }> } };
+type PagesTestQueryQuery = { readonly allSitePlugin: { readonly edges: ReadonlyArray<{ readonly node: Pick<SitePlugin, 'name' | 'version'> }> } };
 
 type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'siteUrl'>> }> };
+
+type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_2_Query = { readonly allI18NRoute: { readonly nodes: ReadonlyArray<(
+      Pick<I18nRoute, 'routeId'>
+      & { readonly fields: Maybe<Pick<I18nRouteFields, 'it' | 'en'>> }
+    )> } };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

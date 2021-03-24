@@ -1,9 +1,11 @@
 ---
-I18nSwitcher_en: EN
-I18nSwitcher_it: IT
+I18nSwitch_en: EN
+I18nSwitch_it: IT
 UntranslatedTitle: Coming soon
 UntranslatedSubtitle: Sorry, this content has not been translated in English yet
 UntranslatedText: Available in
 UntranslatedTextLang_en: English
 UntranslatedTextLang_it: Italian
 404message: This page does not exists
+PagesTestMsg: Test static page without neither markdown nor queries
+Test: Text in english

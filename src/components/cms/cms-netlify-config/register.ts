@@ -5,6 +5,10 @@ export default function register(CMS) {
   CMS.registerWidget(WidgetId);
   // CMS.registerWidget(WidgetMenu);
   
+  // TODO: on postSave I can add a call to the Gatsby Cloud webhook needed for
+  // live previews, for instance I would need to call 
+  // https://webhook.gatsbyjs.com/hooks/data_source/d389d126-df04-4b2d-9656-3f357d674f73
+  // for `kuus/gatsby-starter`
   CMS.registerEventListener(
     {
       name: "preSave",

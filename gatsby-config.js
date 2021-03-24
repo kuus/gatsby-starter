@@ -26,6 +26,13 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
+        path: `${__dirname}/src/pages`,
+        name: "pages",
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
         path: `${__dirname}/src/templates`,
         name: "templates",
       },
@@ -90,12 +97,13 @@ module.exports = {
     },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-root-import",
-    {
-      resolve: "gatsby-plugin-typegen",
-      options: {
-        outputPath: "src/gatsby.d.ts",
-      },
-    },
+    // FIXME: this does not work nicely:
+    // {
+    //   resolve: "gatsby-plugin-typegen",
+    //   options: {
+    //     outputPath: "src/gatsby.d.ts",
+    //   },
+    // },
     {
       resolve: "gatsby-plugin-typescript",
       options: {
@@ -104,6 +112,15 @@ module.exports = {
       },
     },
     "gatsby-plugin-styled-components",
+    {
+      resolve: "gatsby-plugin-page-creator",
+      options: {
+        path: `${__dirname}/src/pages`,
+        ignore: {
+          patterns: ["**/*.(js|ts)?(x)"],
+        },
+      },
+    },
     {
       resolve: "@kuus/gatsby-plugin-i18n",
       options: {

@@ -1,7 +1,7 @@
 import { graphql } from "gatsby";
 import React, { useEffect } from "react";
 
-const PageAdmin: Page<GatsbyTypes.PageAdminQuery> = ({ data }) => {
+const PagesAdmin: Page<GatsbyTypes.PagesAdminQuery> = ({ data }) => {
   useEffect(() => {
     import("src/components/cms").then(({ default: GatsbyNetlifyCMS }) => {
       GatsbyNetlifyCMS(data);
@@ -14,7 +14,7 @@ const PageAdmin: Page<GatsbyTypes.PageAdminQuery> = ({ data }) => {
 };
 
 export const query = graphql`
-  query PageAdmin {
+  query PagesAdmin {
     # i18n: sitePlugin(name: {eq: "@kuus/gatsby-plugin-i18n"}) {
     #   name
     #   pluginOptions {
@@ -48,4 +48,4 @@ export const query = graphql`
   }
 `
 
-export default PageAdmin;
+export default PagesAdmin;

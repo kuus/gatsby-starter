@@ -1,15 +1,15 @@
 import React from "react";
 import Layout from "src/components/Layout";
-import { Link, _ } from "@kuus/gatsby-plugin-i18n";
+import { Link, t } from "@kuus/gatsby-plugin-i18n";
 
-const Page404 = () => {
+const Pages404: Page<{}> = () => {
   return (
     <Layout>
       <h1>404</h1>
-      <p>{_("404message")}</p>
-      <Link to="pages/home">Back home</Link>
+      <p>{t("404message")}</p>
+      <Link route="pages/home">Back home</Link>
     </Layout>
   );
 };
 
-export default Page404;
+export default Pages404;

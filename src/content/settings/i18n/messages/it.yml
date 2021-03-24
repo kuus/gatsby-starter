@@ -1,9 +1,11 @@
 ---
-I18nSwitcher_en: EN
-I18nSwitcher_it: IT
+I18nSwitch_en: EN
+I18nSwitch_it: IT
 UntranslatedTitle: Contenuto non disponibile
 UntranslatedSubtitle: Ci dispiace, questa pagina non è ancora stata tradotta in italiano
 UntranslatedText: Disponibile in
 UntranslatedTextLang_en: inglese
 UntranslatedTextLang_it: italiano
 404message: Questa pagina non esiste
+PagesTestMsg: Test pagina static senza markdown né queries
+Test: Testo in italiano

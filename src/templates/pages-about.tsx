@@ -8,7 +8,7 @@ const TemplatePagesAbout: Page<GatsbyTypes.TemplatePagesAboutQuery> = ({ data })
   return (
     <Layout>
       {data.node?.frontmatter?.title}
-      <Link to="pages/home">Back home</Link>
+      <Link route="pages/home">Back home</Link>
       <MDXRenderer>{data.node?.body}</MDXRenderer>
     </Layout>
   );
