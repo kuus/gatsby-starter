@@ -11,7 +11,7 @@ import { default as register } from "./register";
 // }
 
 export default {
-  isLocal: typeof process !== "undefined" && process.env.GATSBY_IS_LOCAL === "true",
+  isLocal: process.env.NODE_ENV === "development",
   backend,
   collections,
   fields,

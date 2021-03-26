@@ -13,7 +13,7 @@ import it from "netlify-cms-locales/dist/esm/it";
 // import nl from "netlify-cms-locales/dist/esm/nl";
 
 const getTemplatesFromGatsby = ({ templates }: GatsbyTypes.PageAdminQuery) => {
-  return templates.edges.map(({ node }) => node.name);
+  return templates.nodes.map((node) => node.name);
 }
 
 export default function GatsbyNetlifyCMS(graphqlData: GatsbyTypes.PageAdminQuery) {
@@ -23,8 +23,8 @@ export default function GatsbyNetlifyCMS(graphqlData: GatsbyTypes.PageAdminQuery
   const config = {
     backend: {
       ...configurator.backend,
-      name: "test-repo",
-      // name: configurator.isLocal ? "test-repo" : "git-gateway",
+      // name: "test-repo",
+      name: configurator.isLocal ? "test-repo" : "git-gateway",
     },
     i18n: {
       structure: "multiple_files",
@@ -45,6 +45,8 @@ export default function GatsbyNetlifyCMS(graphqlData: GatsbyTypes.PageAdminQuery
       // configurator.collections.page("home"),
       // configurator.collections.pages(),
       configurator.collections.pagesStatic([
+        configurator.collections.pageStatic("home"),
+        configurator.collections.pageStatic("about"),
         configurator.collections.pageStatic("privacy-policy", [{
           widget: "string",
           label: "Test additional field",

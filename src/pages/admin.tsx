@@ -21,23 +21,19 @@ export const query = graphql`
       hideDefaultLocaleInUrl
     }
     templates: allFile(filter: {sourceInstanceName: {eq: "templates"}}) {
-      edges {
-        node {
-          name
-          relativePath
-        }
+      nodes {
+        name
+        relativePath
       }
     }
     pages: allSitePage {
-      edges {
-        node {
-          localisedUrlPath: path
-          # templatePath: component
-          # context {
-          #   routeId: route
-          #   urlPath: slug
-          # }
-        }
+      nodes {
+        localisedUrlPath: path
+        # templatePath: component
+        # context {
+        #   routeId: route
+        #   urlPath: slug
+        # }
       }
     }
     meta: site {

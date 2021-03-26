@@ -1,6 +1,6 @@
 ---
 id: 3ARhbZwXbyK07BzlDN1sK
-last_edit: 2021-03-26T10:47:30.258Z
+last_edit: 2021-03-26T14:51:19.608Z
 slug: /folder-path
 template: default
 title: folder path
