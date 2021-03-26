@@ -6,7 +6,7 @@ const Pages404: Page<{}> = () => {
   return (
     <Layout>
       <h1>404</h1>
-      <p>{t("404message")}</p>
+      <p>{t("404.message")}</p>
       <Link route="pages/home">Back home</Link>
     </Layout>
   );

@@ -1,11 +1,11 @@
 ---
-I18nSwitch_en: EN
-I18nSwitch_it: IT
-UntranslatedTitle: Contenuto non disponibile
-UntranslatedSubtitle: Ci dispiace, questa pagina non è ancora stata tradotta in italiano
-UntranslatedText: Disponibile in
-UntranslatedTextLang_en: inglese
-UntranslatedTextLang_it: italiano
-404message: Questa pagina non esiste
-PagesTestMsg: Test pagina static senza markdown né queries
-Test: Testo in italiano
+I18nSwitch.en: EN
+I18nSwitch.it: IT
+Untranslated.title: Contenuto non disponibile
+Untranslated.subtitle: Ci dispiace, questa pagina non è ancora stata tradotta in italiano
+Untranslated.text: Disponibile in
+Untranslated.textLang_en: inglese
+Untranslated.textLang_it: italiano
+404.message: Questa pagina non esiste
+test.msg: Test pagina static senza markdown né queries
+.test: Testo in italiano

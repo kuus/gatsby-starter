@@ -1,11 +1,11 @@
 ---
-I18nSwitch_en: EN
-I18nSwitch_it: IT
-UntranslatedTitle: Coming soon
-UntranslatedSubtitle: Sorry, this content has not been translated in English yet
-UntranslatedText: Available in
-UntranslatedTextLang_en: English
-UntranslatedTextLang_it: Italian
-404message: This page does not exists
-PagesTestMsg: Test static page without neither markdown nor queries
-Test: Text in english
+I18nSwitch.en: EN
+I18nSwitch.it: IT
+Untranslated.title: Coming soon
+Untranslated.subtitle: Sorry, this content has not been translated in English yet
+Untranslated.text: Available in
+Untranslated.textLang_en: English
+Untranslated.textLang_it: Italian
+404.message: This page does not exists
+test.msg: Test static page without neither markdown nor queries
+.test: Text in english

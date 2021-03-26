@@ -24,7 +24,7 @@ const PagesTestQuery: Page<GatsbyTypes.PagesTestQueryQuery> = ({ data }) => {
       <h1>Test stateful page without markdown, with query</h1>
       <code>Generated from "src/pages/test-query.tsx"</code>
       <small>the url is set through special comment in source .tsx file</small>
-      <p>{t("Test")}</p>
+      <p>{t(".test")}</p>
       {plugins.map((plugin) => (
         <div key={plugin}>{plugin}</div>
       ))}

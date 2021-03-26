@@ -5,7 +5,7 @@ const PagesStateful: Page<{}> = () => {
   return (
     <Layout>
       <h1>PagesStateful</h1>
-      <code>Generated from "src/pages/stateful.in.tsx"</code>
+      <code>Generated from "src/pages/stateful.it.tsx"</code>
       <p>Testo in italiano</p>
     </Layout>
   );

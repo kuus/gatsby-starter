@@ -7,11 +7,11 @@ const TemplateUntranslated: FC<{}> = () => {
 
   return (
     <Layout>
-      {t("UntranslatedText")}
+      {t("Untranslated.text")}
       {` `}
-      {i18n.availableIn.map((route) => (
-        <Link key={route.to} to={route.to}>
-          {t(`UntranslatedTextLang_${route.locale}`)}
+      {i18n.translatedIn.map(({ locale, url }) => (
+        <Link key={url} to={url}>
+          {t(`Untranslated.textLang_${locale}`)}
         </Link>
       ))}
     </Layout>
