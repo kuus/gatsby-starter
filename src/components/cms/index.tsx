@@ -40,8 +40,6 @@ export default function GatsbyNetlifyCMS(graphqlData: GatsbyTypes.PageAdminQuery
       }
     },
     local_backend: true,
-    media_folder: "static/img",
-    public_folder: "/img",
     collections: [
       // configurator.collections.page("about"),
       // configurator.collections.page("home"),
