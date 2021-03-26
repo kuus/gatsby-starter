@@ -47,9 +47,9 @@ module.exports = {
     // {
     //   resolve:`gatsby-source-cloudinary`,
     //   options: {
-    //     cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-    //     apiKey: process.env.CLOUDINARY_API_KEY,
-    //     apiSecret: process.env.CLOUDINARY_API_SECRET,
+    //     cloudName: process.env.GATSBY_CLOUDINARY_CLOUD_NAME,
+    //     apiKey: process.env.GATSBY_CLOUDINARY_API_KEY,
+    //     apiSecret: process.env.GATSBY_CLOUDINARY_API_SECRET,
     //     context: true,
     //     // prefix: "gatsby-starter",
     //     // resourceType: "image",

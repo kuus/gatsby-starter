@@ -35,8 +35,8 @@ export default function GatsbyNetlifyCMS(graphqlData: GatsbyTypes.PageAdminQuery
     media_library: {
       name: "cloudinary",
       config: {
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-        api_key: process.env.CLOUDINARY_API_KEY,
+        cloud_name: process.env.GATSBY_CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.GATSBY_CLOUDINARY_API_KEY,
       }
     },
     local_backend: true,
