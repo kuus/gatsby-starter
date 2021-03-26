@@ -43,18 +43,6 @@ module.exports = {
         name: "assets",
       },
     },
-    // {
-    //   resolve:`gatsby-source-cloudinary`,
-    //   options: {
-    //     cloudName: process.env.GATSBY_CLOUDINARY_CLOUD_NAME,
-    //     apiKey: process.env.GATSBY_CLOUDINARY_API_KEY,
-    //     apiSecret: process.env.GATSBY_CLOUDINARY_API_SECRET,
-    //     context: true,
-    //     // prefix: "gatsby-starter",
-    //     // resourceType: "image",
-    //     // type: "upload",
-    //   }
-    // },
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
