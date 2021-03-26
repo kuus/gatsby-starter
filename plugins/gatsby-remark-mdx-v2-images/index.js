@@ -4,6 +4,7 @@ const fromDom = require("hast-util-from-dom");
 
 module.exports = ({ markdownAST }) => {
   visit(markdownAST, "html", (node) => {
+    // console.log("node.value", node.value)
     if (!matchesGatsbyImage(node.value)) {
       return;
     }
@@ -22,5 +23,6 @@ module.exports = ({ markdownAST }) => {
   return markdownAST;
 };
 
+// support gatsby-remote-images-anywhere
 const matchesGatsbyImage = (rawHTML) =>
-  rawHTML.match(/class=['"]gatsby-resp-image/);
+  rawHTML.match(/class=['"]gatsby-resp-image/) || rawHTML.match(/class=['"]gria-image-wrapper/);
