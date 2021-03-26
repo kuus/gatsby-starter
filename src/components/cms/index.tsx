@@ -16,13 +16,9 @@ const getTemplatesFromGatsby = ({ templates }: GatsbyTypes.PageAdminQuery) => {
   return templates.edges.map(({ node }) => node.name);
 }
 
-const getLocalesFromGatsby = ({ i18n }: GatsbyTypes.PageAdminQuery) => {
-  return i18n.pluginOptions;
-}
-
 export default function GatsbyNetlifyCMS(graphqlData: GatsbyTypes.PageAdminQuery) {
-  const { locales, defaultLocale } = getLocalesFromGatsby(graphqlData);
-  const templates = getTemplatesFromGatsby(graphqlData);
+  const { locales, defaultLocale } = graphqlData.i18N;
+  // const templates = getTemplatesFromGatsby(graphqlData);
 
   const config = {
     backend: {

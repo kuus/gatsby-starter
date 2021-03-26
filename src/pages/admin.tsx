@@ -15,13 +15,11 @@ const PagesAdmin: Page<GatsbyTypes.PagesAdminQuery> = ({ data }) => {
 
 export const query = graphql`
   query PagesAdmin {
-    # i18n: sitePlugin(name: {eq: "@kuus/gatsby-plugin-i18n"}) {
-    #   name
-    #   pluginOptions {
-    #     locales
-    #     defaultLocale
-    #   }
-    # }
+    i18N {
+      locales
+      defaultLocale
+      hideDefaultLocaleInUrl
+    }
     templates: allFile(filter: {sourceInstanceName: {eq: "templates"}}) {
       edges {
         node {
