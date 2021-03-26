@@ -5,6 +5,7 @@
 // import "netlify-cms-core"
 import CMS from "netlify-cms-app";
 import configurator from "./cms-netlify-config";
+import "./identity";
 // import styled from "./cms-netlify/withStyledComponents";
 // import PageAboutPreview from "src/templates/pages-about";
 import cloudinary from "netlify-cms-media-library-cloudinary";

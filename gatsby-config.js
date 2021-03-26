@@ -120,6 +120,7 @@ module.exports = {
     // "gatsby-plugin-manifest",
     // "gatsby-plugin-sitemap",
     // "gatsby-plugin-offline",
+    "gatsby-netlify-cms", // custom plugin to improve and then publish
     "gatsby-plugin-netlify",
   ],
 };

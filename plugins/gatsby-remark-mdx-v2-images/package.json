@@ -1,5 +1,9 @@
 {
   "version": "0.0.1",
   "config": "@see https://github.com/newrelic/docs-website/tree/develop/plugins/gatsby-remark-mdx-v2-images",
-  "devDependencies": {}
+  "devDependencies": {
+    "hast-util-from-dom": "^3.0.0",
+    "jsdom": "^16.5.1",
+    "unist-util-visit": "^2.0.3"
+  }
 }

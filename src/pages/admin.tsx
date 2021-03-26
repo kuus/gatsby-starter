@@ -3,7 +3,8 @@ import React, { useEffect } from "react";
 
 const PagesAdmin: Page<GatsbyTypes.PagesAdminQuery> = ({ data }) => {
   useEffect(() => {
-    import("src/components/cms").then(({ default: GatsbyNetlifyCMS }) => {
+    // TODO: put the packagae on npm at some point
+    import("../../plugins/gatsby-netlify-cms/src/cms").then(({ default: GatsbyNetlifyCMS }) => {
       GatsbyNetlifyCMS(data);
     });
   }, []);
