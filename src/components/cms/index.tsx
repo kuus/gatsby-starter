@@ -19,7 +19,6 @@ const getTemplatesFromGatsby = ({ templates }: GatsbyTypes.PageAdminQuery) => {
 export default function GatsbyNetlifyCMS(graphqlData: GatsbyTypes.PageAdminQuery) {
   const { locales, defaultLocale } = graphqlData.i18N;
   // const templates = getTemplatesFromGatsby(graphqlData);
-
   const config = {
     backend: {
       ...configurator.backend,
@@ -39,7 +38,9 @@ export default function GatsbyNetlifyCMS(graphqlData: GatsbyTypes.PageAdminQuery
         api_key: process.env.GATSBY_CLOUDINARY_API_KEY,
       }
     },
-    local_backend: true,
+    local_backend: !!configurator.isLocal,
+    media_folder: "static/uploads",
+    public_folder: "/uploads",
     collections: [
       // configurator.collections.page("about"),
       // configurator.collections.page("home"),
