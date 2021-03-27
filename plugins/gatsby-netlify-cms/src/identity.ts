@@ -1,3 +1,9 @@
+/**
+ * @file
+ * 
+ * Almost opy pasted from https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-netlify-cms/src/cms-identity.js
+ */
+
 import netlifyIdentityWidget from "netlify-identity-widget"
 
 // @ts-expect-error

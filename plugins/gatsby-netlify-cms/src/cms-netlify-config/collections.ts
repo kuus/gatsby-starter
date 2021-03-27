@@ -25,7 +25,7 @@ export const pageStatic = (
 ): CmsCollectionFile => ({
   name: slug,
   label: titleCase(slug),
-  file: `src/content/pages/${slug}`,
+  file: `src/content/pages/${slug}/index.md`,
   fields: [...fields.groups.page, ...customFields],
   // label_singular: "",
   // description: "",

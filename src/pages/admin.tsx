@@ -2,10 +2,15 @@ import { graphql } from "gatsby";
 import React, { useEffect } from "react";
 
 const PagesAdmin: Page<GatsbyTypes.PagesAdminQuery> = ({ data }) => {
+
   useEffect(() => {
     // TODO: put the packagae on npm at some point
-    import("../../plugins/gatsby-netlify-cms/src/cms").then(({ default: GatsbyNetlifyCMS }) => {
-      GatsbyNetlifyCMS(data);
+    import("../../plugins/gatsby-netlify-cms/src/cms").then(({ GatsbyNetlifyCMS }) => {
+      GatsbyNetlifyCMS(data, {
+        backend: {
+          repo: "kuus/gatsby-starter",
+        }
+      });
     });
   }, []);
 

@@ -54,6 +54,9 @@
     "react-helmet": "^6.1.0",
     "remark-image-attributes": "^0.2.1",
     "styled-components": "^5.2.1",
+    "ts-deepmerge": "^1.0.7",
     "unist-util-visit": "^2.0.3"
+  },
+  "dependencies": {
   }
 }

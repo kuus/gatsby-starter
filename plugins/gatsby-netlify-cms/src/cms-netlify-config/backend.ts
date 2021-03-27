@@ -7,6 +7,6 @@ export const commit_messages = {
 }
 
 export default {
-  branch: "master",
+  branch: "main",
   commit_messages
 }
