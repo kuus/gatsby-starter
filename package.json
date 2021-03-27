@@ -17,7 +17,7 @@
     "kill": "killall -9 node"
   },
   "devDependencies": {
-    "@kuus/gatsby-plugin-i18n": "^0.5.1",
+    "@kuus/gatsby-plugin-i18n": "^0.5.2",
     "@mdx-js/mdx": "^2.0.0-next.8",
     "@mdx-js/react": "^2.0.0-next.8",
     "@types/styled-components": "^5.1.9",

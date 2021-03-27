@@ -42,18 +42,19 @@ export const GatsbyNetlifyCMS = (graphqlData: any, configOverride: Partial<CmsCo
     collections: [
       configurator.collections.page("about"),
       configurator.collections.page("home"),
+      configurator.collections.page("privacy-policy"),
       // configurator.collections.pages(),
-      configurator.collections.pagesStatic([
-        // configurator.collections.pageStatic("home"),
-        // configurator.collections.pageStatic("about"),
-        configurator.collections.pageStatic("privacy-policy", [
-          {
-            widget: "string",
-            label: "Test additional field",
-            name: "test_additional",
-          },
-        ]),
-      ]),
+      // configurator.collections.pagesStatic([
+      //   // configurator.collections.pageStatic("home"),
+      //   // configurator.collections.pageStatic("about"),
+      //   configurator.collections.pageStatic("privacy-policy", [
+      //     {
+      //       widget: "string",
+      //       label: "Test additional field",
+      //       name: "test_additional",
+      //     },
+      //   ]),
+      // ]),
       configurator.collections.blog(),
       configurator.collections.faq(),
       configurator.collections.settings(),
