@@ -54,7 +54,7 @@ module.exports = {
         shouldBlockNodeFromTransformation: (node) =>
           node.absolutePath && node.absolutePath.endsWith("index.md"),
         gatsbyRemarkPlugins: [
-          "gatsby-remark-autolink-headers",// FIXME: these might break now...11/06/2021
+          // "gatsby-remark-autolink-headers",// FIXME: these might break now...11/06/2021
           {
             resolve: "gatsby-remark-copy-linked-files",
             options: {
@@ -82,6 +82,12 @@ module.exports = {
         ],
       },
     },
+    // {
+    //   resolve: "gatsby-plugin-compile-es6-packages",
+    //   options: {
+    //     modules: ["gatsby-plugin-mdx"],
+    //   },
+    // },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-root-import",
     // FIXME: this does not work nicely:
