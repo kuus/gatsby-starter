@@ -5,13 +5,13 @@ const PagesAdmin: Page<GatsbyTypes.PagesAdminQuery> = ({ data }) => {
 
   useEffect(() => {
     // TODO: put the packagae on npm at some point
-    import("../../plugins/gatsby-netlify-cms/src/cms").then(({ GatsbyNetlifyCMS }) => {
-      GatsbyNetlifyCMS(data, {
-        backend: {
-          repo: "kuus/gatsby-starter",
-        }
-      });
-    });
+    // import("../../plugins/gatsby-netlify-cms/src/cms").then(({ GatsbyNetlifyCMS }) => {
+    //   GatsbyNetlifyCMS(data, {
+    //     backend: {
+    //       repo: "kuus/gatsby-starter",
+    //     }
+    //   });
+    // });
   }, []);
 
   return <>

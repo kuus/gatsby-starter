@@ -34,7 +34,17 @@ The following steps-by-steps use [Netlify](https://www.netlify.com) to host the 
 - [gatsby-plugin-remote-images](https://www.npmjs.com/package/gatsby-plugin-remote-images)
 - [gatsby-remark-images-anywhere](https://www.gatsbyjs.com/plugins/gatsby-remark-images-anywhere/)
 - [gatsby-plugin-remote-images-d0m3](https://www.gatsbyjs.com/plugins/gatsby-plugin-remote-images-d0m3/)
-- 
+
+## Other Gatsby and Netlify CMS integrations
+
+- [gatsby-mdx-netlify-cms-starter](https://github.com/renvrant/gatsby-mdx-netlify-cms-starter)
+
+## USing mdx inside frontmatter (to support single file Netlify CMS collections)
+
+- https://github.com/gatsbyjs/gatsby/issues/5021
+- https://github.com/gatsbyjs/gatsby/discussions/18570
+- https://github.com/gatsbyjs/gatsby/issues/5729
+
 ## Caveats
 
 - TODO: remove `plugins/gatsby-remark-mdx-v2-images` once mdx v2 is well supported by gatsby ecosystem, we can also remove the following deps then: `unist-util-visit`, `hast-util-from-dom` and `jsdom`, see [issue](https://github.com/mdx-js/mdx/issues/1041)

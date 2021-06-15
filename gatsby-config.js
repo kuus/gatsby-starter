@@ -1,11 +1,9 @@
-require('dotenv').config();
+require("dotenv").config();
 
 module.exports = {
   flags: { FAST_DEV: true, PRESERVE_WEBPACK_CACHE: true },
   siteMetadata: {
     siteUrl: "https://kuus-gatsby-starter.netlify.app",
-    title: "Gatsby + Netlify CMS Starter",
-    description: "...",
   },
   plugins: [
     {
@@ -51,8 +49,12 @@ module.exports = {
       options: {
         extensions: [".mdx", ".md"],
         remarkPlugins: [require("remark-image-attributes")],
+        // FIXME: xxx related to dummy files creation in onCreateNode of plugin-18n for file collections
+        // to move to a gatsby netlify mdx plugin
+        shouldBlockNodeFromTransformation: (node) =>
+          node.absolutePath && node.absolutePath.endsWith("index.md"),
         gatsbyRemarkPlugins: [
-          "gatsby-remark-autolink-headers",
+          "gatsby-remark-autolink-headers",// FIXME: these might break now...11/06/2021
           {
             resolve: "gatsby-remark-copy-linked-files",
             options: {
@@ -67,9 +69,9 @@ module.exports = {
               linkImagesToOriginal: false,
             },
           },
-          {
-            resolve: require.resolve("./plugins/gatsby-remark-mdx-v2-images"),
-          },
+          // {
+          //   resolve: require.resolve("./plugins/gatsby-remark-mdx-v2-images"),// FIXME: these might break now...11/06/2021
+          // },
           {
             resolve: "gatsby-remark-image-attributes",
             options: {
