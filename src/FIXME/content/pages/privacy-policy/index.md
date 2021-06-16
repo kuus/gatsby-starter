@@ -9,7 +9,7 @@ en:
   last_edit: 2021-03-27T10:12:10.085Z
 it:
   template: collection-folder
-  id: fmm-ycGiVuqocigA2YM7t
+  id: fmm-ycGiVuqocigAts2YM7t
   title: Privacy
   body: Testo
   slug: /privacy-policy
