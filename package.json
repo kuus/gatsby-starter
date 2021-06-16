@@ -15,7 +15,7 @@
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"{gatsby-*.js,src/**/*.js}\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "kill": "killall -9 node",
-    "postinstall": "npm link @kuus/gatsby-plugin-i18n"
+    "local": "npm link @kuus/gatsby-plugin-i18n"
   },
   "devDependencies": {
     "@kuus/gatsby-plugin-i18n": "^0.6.1",
@@ -27,9 +27,8 @@
     "dotenv": "^10.0.0",
     "gatsby": "^3.7.1",
     "gatsby-cli": "^3.7.1",
-    "gatsby-plugin-compile-es6-packages": "^2.1.0",
     "gatsby-plugin-image": "^1.7.1",
-    "gatsby-plugin-mdx": "^2.x.x",
+    "gatsby-plugin-mdx": "^2.7.1",
     "gatsby-plugin-netlify": "^3.7.1",
     "gatsby-plugin-react-helmet": "^4.7.1",
     "gatsby-plugin-root-import": "^2.0.6",

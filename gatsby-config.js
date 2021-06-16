@@ -48,42 +48,41 @@ module.exports = {
       resolve: "gatsby-plugin-mdx",
       options: {
         extensions: [".mdx", ".md"],
-        remarkPlugins: [require("remark-image-attributes")],
-        // FIXME: xxx related to dummy files creation in onCreateNode of plugin-18n for file collections
-        // to move to a gatsby netlify mdx plugin
-        shouldBlockNodeFromTransformation: (node) =>
-          node.absolutePath && node.absolutePath.endsWith("index.md"),
-        gatsbyRemarkPlugins: [
-          // "gatsby-remark-autolink-headers",// FIXME: these might break now...11/06/2021
-          {
-            resolve: "gatsby-remark-copy-linked-files",
-            options: {
-              destinationDir: "documents", // https://bit.ly/2NCmJ5t
-              ignoreFileExtensions: ["png", "jpg", "jpeg"],
-            },
-          },
-          {
-            resolve: "gatsby-remark-images-anywhere",
-            options: {
-              // maxWidth: 900,
-              linkImagesToOriginal: false,
-            },
-          },
-          // {
-          //   resolve: require.resolve("./plugins/gatsby-remark-mdx-v2-images"),// FIXME: these might break now...11/06/2021
-          // },
-          {
-            resolve: "gatsby-remark-image-attributes",
-            options: {
-              styleAttributes: true,
-              dataAttributes: true,
-            },
-          },
-        ],
+        // remarkPlugins: [require("remark-image-attributes")],
+        // // FIXME: xxx related to dummy files creation in onCreateNode of plugin-18n for file collections
+        // // to move to a gatsby netlify mdx plugin
+        // shouldBlockNodeFromTransformation: (node) =>
+        //   node.absolutePath && node.absolutePath.endsWith("index.md"),
+        // gatsbyRemarkPlugins: [
+        //   // "gatsby-remark-autolink-headers",// FIXME: these might break now...11/06/2021
+        //   {
+        //     resolve: "gatsby-remark-copy-linked-files",
+        //     options: {
+        //       destinationDir: "documents", // https://bit.ly/2NCmJ5t
+        //       ignoreFileExtensions: ["png", "jpg", "jpeg"],
+        //     },
+        //   },
+        //   {
+        //     resolve: "gatsby-remark-images-anywhere",
+        //     options: {
+        //       // maxWidth: 900,
+        //       linkImagesToOriginal: false,
+        //     },
+        //   },
+        //   // {
+        //   //   resolve: require.resolve("./plugins/gatsby-remark-mdx-v2-images"),// FIXME: these might break now...11/06/2021
+        //   // },
+        //   {
+        //     resolve: "gatsby-remark-image-attributes",
+        //     options: {
+        //       styleAttributes: true,
+        //       dataAttributes: true,
+        //     },
+        //   },
+        // ],
       },
     },
     // {
-    //   resolve: "gatsby-plugin-compile-es6-packages",
     //   options: {
     //     modules: ["gatsby-plugin-mdx"],
     //   },

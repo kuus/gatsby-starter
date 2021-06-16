@@ -1,7 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { Link } from "@kuus/gatsby-plugin-i18n";
-import { MDXRenderer } from "src/components/MDX";
+// import { MDX, MDXRenderer } from "src/components/MDX";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 import Layout from "src/components/Layout";
 import AllRoutes from "src/components/AllRoutes";
 
@@ -16,6 +17,8 @@ const TemplateDefault: Page<GatsbyTypes.TemplateDefaultQuery> = ({ data }) => {
       <p>
       </p>
       <MDXRenderer>{data.node?.body}</MDXRenderer>
+      
+      {/* <MDXRenderer>{data.node?.body}</MDXRenderer> */}
     </Layout>
   );
 };

@@ -11,7 +11,7 @@ type MDXRendererProps = {
 };
 
 export const MDXProvider = (props) => {
-  return <Provider components={globalComponents} {...props} />;
+  return <Provider mcomponents={globalComponents} {...props} />;
 };
 
 export const MDXRenderer: FC<MDXRendererProps> = ({
